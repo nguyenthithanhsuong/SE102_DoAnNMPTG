@@ -16,7 +16,6 @@ public:
 	bool IsContain(CGameObject* object);
 	void Split();
 	void Insert(CGameObject* object);
-	void Retrieve(CGameObject* object);
 	void Move(CGameObject* object, QNode* node, QNode* Tree);
 	int HighestLevel(QNode* node);
 };

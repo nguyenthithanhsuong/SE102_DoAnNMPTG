@@ -78,29 +78,6 @@ void QNode::Insert(CGameObject* object)
 	}
 }
 
-void QNode::Retrieve(CGameObject* object)
-{
-	// Check if the object intersects with the current node
-	if (IsContain(object))
-	{
-		// Retrieve objects from this node
-		for (auto i = objects.begin(); i != objects.end(); i++)
-		{
-			if (object != *i)
-				objects.push_back(*i);
-		}
-
-		// Retrieve objects from child nodes if they exist
-		if (left != nullptr && right != nullptr)
-		{
-			if (left->IsContain(object))
-				left->Retrieve(object);
-			if (right->IsContain(object))
-				right->Retrieve(object);
-		}
-	}
-}
-
 void QNode::Move(CGameObject* object, QNode* node, QNode* Tree)
 {
 	if (!node->IsContain(object))
