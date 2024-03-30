@@ -12,6 +12,7 @@ void Loader::LoadBill()
 	LPTEXTURE texBill = textures->Get(ID_TEX_BILL);
 	LPANIMATION ani;
 	ani = new CAnimation(100);
+
 	//idle right
 	sprites->Add(10000, 716, 1, 779, 64, texBill);
 	ani->Add(10000);
@@ -31,7 +32,7 @@ void Loader::LoadBill()
 	ani->Add(10004);
 	ani->Add(10005);
 	ani->Add(10006);
-	animations->Add(ID_ANI_BILL_WALKING_RIGHT, ani);
+	animations->Add(ID_ANI_BILL_WALK_RIGHT, ani);
 
 	//idle left
 	sprites->Add(10010, 456, 261, 519, 324, texBill);
@@ -53,7 +54,7 @@ void Loader::LoadBill()
 	ani->Add(10014);
 	ani->Add(10015);
 	ani->Add(10016);
-	animations->Add(ID_ANI_BILL_WALKING_LEFT, ani);
+	animations->Add(ID_ANI_BILL_WALK_LEFT, ani);
 
 	// JUMP WALK RIGHT
 	sprites->Add(10021, 781, 66, 844, 129, texBill);
@@ -65,9 +66,9 @@ void Loader::LoadBill()
 	ani->Add(10022);
 	ani->Add(10023);
 	ani->Add(10024);
+	animations->Add(ID_ANI_BILL_JUMP_RIGHT, ani);
 
 	// JUMP WALK LEFT
-	animations->Add(ID_ANI_BILL_JUMP_RIGHT, ani);
 	sprites->Add(10025, 196, 326, 259, 389, texBill);
 	sprites->Add(10026, 196 - 65, 326, 259 - 65, 389, texBill);
 	sprites->Add(10027, 196 - 65 * 2, 326, 259 - 65 * 2, 389, texBill);
@@ -101,7 +102,71 @@ void Loader::LoadBill()
 	animations->Add(ID_ANI_BILL_SIT_LEFT, ani);
 
 	bill = new CBill(BILL_START_X, BILL_START_Y);
-	objects.push_back(bill);
+	Tree->Insert(bill);
+
+	// WALK LOOK UP RIGHT
+	sprites->Add(10061, 1, 66, 64, 129, texBill);
+	sprites->Add(10062, 66, 66, 129, 129, texBill);
+	sprites->Add(10063, 131, 66, 194, 129, texBill);
+	sprites->Add(10064, 196, 66, 259, 129, texBill);
+	sprites->Add(10065, 261, 66, 324, 129, texBill);
+	sprites->Add(10066, 326, 66, 389, 129, texBill);
+	ani = new CAnimation(100);
+	ani->Add(10061);
+	ani->Add(10062);
+	ani->Add(10063);
+	ani->Add(10064);
+	ani->Add(10065);
+	ani->Add(10066);
+	animations->Add(ID_ANI_BILL_WALK_LOOK_UP_RIGHT, ani);
+
+	//WALK LOOK UP LEFT
+	sprites->Add(10071, 976, 327, 1039, 390, texBill);
+	sprites->Add(10072, 911, 327, 974, 390, texBill);
+	sprites->Add(10073, 846, 327, 909, 390, texBill);
+	sprites->Add(10074, 781, 327, 844, 390, texBill);
+	sprites->Add(10075, 716, 327, 779, 390, texBill);
+	sprites->Add(10076, 651, 327, 714, 390, texBill);
+	ani = new CAnimation(100);
+	ani->Add(10071);
+	ani->Add(10072);
+	ani->Add(10073);
+	ani->Add(10074);
+	ani->Add(10075);
+	ani->Add(10076);
+	animations->Add(ID_ANI_BILL_WALK_LOOK_UP_LEFT, ani);
+
+	// WALK LOOK DOWN RIGHT
+	sprites->Add(10081, 391, 66, 454, 129, texBill);
+	sprites->Add(10082, 456, 66, 519, 129, texBill);
+	sprites->Add(10083, 521, 66, 584, 129, texBill);
+	sprites->Add(10084, 586, 66, 649, 129, texBill);
+	sprites->Add(10085, 651, 66, 714, 129, texBill);
+	sprites->Add(10086, 716, 66, 779, 129, texBill);
+	ani = new CAnimation(100);
+	ani->Add(10081);
+	ani->Add(10082);
+	ani->Add(10083);
+	ani->Add(10084);
+	ani->Add(10085);
+	ani->Add(10086);
+	animations->Add(ID_ANI_BILL_WALK_LOOK_DOWN_RIGHT, ani);
+
+	//WALK LOOK DOWN LEFT
+	sprites->Add(10091, 586, 327, 649, 390, texBill);
+	sprites->Add(10092, 521, 327, 584, 390, texBill);
+	sprites->Add(10093, 456, 327, 519, 390, texBill);
+	sprites->Add(10094, 391, 327, 454, 390, texBill);
+	sprites->Add(10095, 326, 327, 389, 390, texBill);
+	sprites->Add(10096, 261, 327, 324, 390, texBill);
+	ani = new CAnimation(100);
+	ani->Add(10091);
+	ani->Add(10092);
+	ani->Add(10093);
+	ani->Add(10094);
+	ani->Add(10095);
+	ani->Add(10096);
+	animations->Add(ID_ANI_BILL_WALK_LOOK_DOWN_LEFT, ani);
 }
 
 void Loader::LoadLand()
@@ -149,7 +214,15 @@ void Loader::LoadLand()
 		{
 			CLand* land = new CLand(0.0f + LAND_WIDTH * j, GROUND_Y - LAND_WIDTH * i);
 			land->SetState(tilemap->tilemaparray[i][j]);
-			objects.push_back(land);
+			Tree->Insert(land);
+
+			land = new CLand(200.0f, GROUND_Y);
+			land->SetState(3);
+			Tree->Insert(land);
+
+			land = new CLand(0.0f, GROUND_Y);
+			land->SetState(3);
+			Tree->Insert(land);
 		}
 	}
 }
@@ -176,7 +249,7 @@ void Loader::LoadSky()
 		{
 			CLand* sky = new CLand(0.0f + LAND_WIDTH * j, GROUND_Y + LAND_WIDTH * i);
 			sky->SetState(0);
-			objects.push_back(sky);
+			Tree->Insert(sky);
 		}
 	}
 }

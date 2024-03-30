@@ -17,14 +17,14 @@
 #include "SampleKeyEventHandler.h"
 #include "ID.h"
 #include "Tilemap.h"
+#include "BinaryTree.h"
 
 extern CBill* bill;
 extern CLand* land;
 extern CGame* game;
 
 extern CSampleKeyHandler* keyHandler;
-
-extern list<LPGAMEOBJECT> objects;
+extern QNode* Tree;
 
 class Loader
 {

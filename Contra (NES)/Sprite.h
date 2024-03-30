@@ -2,6 +2,9 @@
 
 #include "Texture.h"
 #include "Game.h"
+#include "Camera.h"
+
+extern CCamera* Camera;
 
 class CSprite
 {

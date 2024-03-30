@@ -3,6 +3,8 @@
 #include <d3dx10.h>
 
 #include "Texture.h"
+#include "debug.h"
+#include "Game.h"
 
 using namespace std;
 

@@ -7,10 +7,15 @@
 #include "Animation.h"
 #include "Animations.h"
 #include "Sprites.h"
+#include "debug.h"
+#include "Textures.h"
+#include "Game.h"
+#include "Sprites.h"
 
 using namespace std;
 
 #define ID_TEX_BBOX -100
+extern CCamera* Camera;
 
 class CGameObject;
 typedef CGameObject* LPGAMEOBJECT;
@@ -46,7 +51,7 @@ public:
 	CGameObject(float x, float y):CGameObject() { this->x = x; this->y = y; }
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom) = 0;
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects = NULL) {};
+	virtual void Update(DWORD dt) {};
 	virtual void Render() = 0;
 	void SetState(int state) { this->state = state; }
 

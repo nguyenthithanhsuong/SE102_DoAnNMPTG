@@ -1,11 +1,7 @@
 #include <d3dx10.h>
 #include <algorithm>
 
-#include "debug.h"
-#include "Textures.h"
-#include "Game.h"
 #include "GameObject.h"
-#include "Sprites.h"
 
 CGameObject::CGameObject()
 {
@@ -32,7 +28,7 @@ void CGameObject::RenderBoundingBox()
 	rect.bottom = (int)b - (int)t;
 
 	float cx, cy;
-	CGame::GetInstance()->GetCamPos(cx, cy);
+	Camera->GetCamPos(cx, cy);
 
 	CGame::GetInstance()->Draw(x - cx, y - cy, bbox, rect.left, rect.top, rect.right, rect.bottom, 0.25f);
 }

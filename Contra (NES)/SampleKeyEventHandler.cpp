@@ -1,10 +1,5 @@
 #include "SampleKeyEventHandler.h"
 
-#include "debug.h"
-#include "Game.h"
-
-#include "Bill.h"
-#include "ID.h"
 
 extern CBill* bill;
 

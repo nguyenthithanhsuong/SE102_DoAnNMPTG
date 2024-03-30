@@ -7,9 +7,10 @@
 #include <dinput.h>
 
 #include "Texture.h"
+#include "debug.h"
 #include "KeyEventHandler.h"
 
-#define MAX_FRAME_RATE 100
+#define MAX_FRAME_RATE 60
 #define KEYBOARD_BUFFER_SIZE 1024
 #define KEYBOARD_STATE_SIZE 256
 
@@ -40,10 +41,6 @@ class CGame
 	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];	
 
 	LPKEYEVENTHANDLER keyHandler;
-
-	//camera processor
-	float cam_x = 0.0f;
-	float cam_y = 0.0f;
 
 	HINSTANCE hInstance;
 
@@ -88,9 +85,6 @@ public:
 	static CGame* GetInstance();
 
 	void SetPointSamplerState();
-
-	void SetCamPos(float x, float y) { cam_x = x; cam_y = y; }
-	void GetCamPos(float& x, float& y) { x = cam_x; y = cam_y; }
 
 	~CGame();
 };

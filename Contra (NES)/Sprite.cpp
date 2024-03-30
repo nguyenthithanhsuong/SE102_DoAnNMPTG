@@ -1,5 +1,4 @@
 #include "Sprite.h"
-
 CSprite::CSprite(int id, int left, int top, int right, int bottom, LPTEXTURE tex)
 {
 	this->id = id;
@@ -33,7 +32,7 @@ void CSprite::Draw(float x, float y)
 {
 	CGame* g = CGame::GetInstance();
 	float cx, cy;
-	g->GetCamPos(cx, cy);
+	Camera->GetCamPos(cx, cy);
 
 	cx = (FLOAT)floor(cx);
 	cy = (FLOAT)floor(cy);

@@ -6,6 +6,8 @@
 
 #include "Texture.h"
 #include "Sprite.h"
+#include "Game.h"
+#include "debug.h"
 
 using namespace std;
 

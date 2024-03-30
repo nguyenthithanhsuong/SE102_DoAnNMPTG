@@ -8,6 +8,7 @@
 #include "debug.h"
 #include "ID.h"
 #include "KeyEventHandler.h"
+class Loader;
 
 class CBill : public CGameObject
 {
@@ -18,10 +19,10 @@ public:
 	CBill(float x, float y) : CGameObject(x, y) 
 	{
 		state = BILL_STATE_RELEASE_JUMP;
-		left = true;
-		right = false;
+		left = false;
+		right = true;
 	}
-	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects); //update frames
+	void Update(DWORD dt); //update frames
 	void Render(); //draw to screen
 	void SetState(int state); //set specific states
 	void SetState(int keycode, int action);

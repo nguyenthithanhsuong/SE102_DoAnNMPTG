@@ -129,17 +129,16 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animations.cpp" />
-    <ClCompile Include="BillSetState.cpp" />
-    <ClCompile Include="BillUpdate.cpp" />
-    <ClCompile Include="GameOthers.cpp" />
-    <ClCompile Include="GameTexture.cpp" />
+    <ClCompile Include="Bill.cpp" />
+    <ClCompile Include="BinaryTree.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Deleted.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Land.cpp" />
     <ClCompile Include="debug.cpp" />
-    <ClCompile Include="GameInIt.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="BillRender.cpp" />
     <ClCompile Include="SampleKeyEventHandler.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />
@@ -150,6 +149,9 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="Animations.h" />
+    <ClInclude Include="BinaryTree.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Deleted.h" />
     <ClInclude Include="Land.h" />
     <ClInclude Include="ID.h" />
     <ClInclude Include="KeyEventHandler.h" />

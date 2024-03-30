@@ -5,7 +5,7 @@ CLand::CLand(float x, float y) :CGameObject(x, y)
 {
 };
 
-void CLand::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
+void CLand::Update(DWORD dt)
 {
 }
 void CLand::GetBoundingBox(float& l, float& t, float& r, float& b)

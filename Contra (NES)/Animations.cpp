@@ -1,5 +1,4 @@
 #include "Animations.h"
-#include "debug.h"
 
 CAnimations* CAnimations::__instance = NULL;
 

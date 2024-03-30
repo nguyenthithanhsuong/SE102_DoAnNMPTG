@@ -16,7 +16,7 @@ public:
 	CLand(float x, float y);
 	void SetState(int state);
 	void Render();
-	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
+	void Update(DWORD dt);
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 };
 

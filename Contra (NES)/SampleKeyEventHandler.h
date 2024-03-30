@@ -1,6 +1,10 @@
 #pragma once
 
 #include "KeyEventHandler.h"
+#include "debug.h"
+#include "Game.h"
+#include "Bill.h"
+#include "ID.h"
 
 class CSampleKeyHandler: public CKeyEventHandler
 {

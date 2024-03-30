@@ -31,29 +31,26 @@
     <ClCompile Include="SampleKeyEventHandler.cpp">
       <Filter>Game\KeyboardProcess</Filter>
     </ClCompile>
-    <ClCompile Include="GameInIt.cpp">
-      <Filter>Game\Game\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="GameTexture.cpp">
-      <Filter>Game\Game\Game</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Game\Game\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameOthers.cpp">
-      <Filter>Game\Game\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="BillRender.cpp">
-      <Filter>Game\Characters\Bill</Filter>
-    </ClCompile>
-    <ClCompile Include="BillUpdate.cpp">
-      <Filter>Game\Characters\Bill</Filter>
-    </ClCompile>
-    <ClCompile Include="BillSetState.cpp">
-      <Filter>Game\Characters\Bill</Filter>
-    </ClCompile>
     <ClCompile Include="Loader.cpp">
       <Filter>Assets\Load</Filter>
+    </ClCompile>
+    <ClCompile Include="Bill.cpp">
+      <Filter>Game\Characters\Bill</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Game\Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game\Game\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryTree.cpp">
+      <Filter>Game\Game\Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="Deleted.cpp">
+      <Filter>Game\Game\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +105,15 @@
     <ClInclude Include="Loader.h">
       <Filter>Assets\Load</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Game\Game\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryTree.h">
+      <Filter>Game\Game\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Deleted.h">
+      <Filter>Game\Game\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">
@@ -157,6 +163,12 @@
     </Filter>
     <Filter Include="Assets\Load">
       <UniqueIdentifier>{ce6c2f1a-1f76-45ee-8894-d7378fcbf7d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\Camera">
+      <UniqueIdentifier>{726cc6e6-7c45-44ee-a178-3333d9fd486a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\Tree">
+      <UniqueIdentifier>{b7fb0613-d286-4e9a-b7a5-da647d8ca707}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

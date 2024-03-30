@@ -17,14 +17,16 @@
 #include "ID.h"
 #include "Tilemap.h"
 #include "Loader.h"
+#include "Camera.h"
 
 CBill* bill = NULL;
 CLand* land = NULL;
 CGame* game;
 
+CCamera* Camera = new CCamera();
 CSampleKeyHandler* keyHandler;
 
-list<LPGAMEOBJECT> objects;
+QNode* Tree = new QNode();
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -46,47 +48,38 @@ void LoadResources()
 	load.LoadLand();
 	load.LoadBill();
 }
-void ClearScene()
+
+bool IsNodeVisible(QNode* node, float camX, float camY) 
 {
-	list<LPGAMEOBJECT>::iterator it;
-	for (it = objects.begin(); it != objects.end(); it++)
-	{
-		delete (*it);
-	}
-	objects.clear();
+		float viewportLeft = camX;
+		float viewportBottom = camY;
+		float viewportRight = camX + SCREEN_WIDTH; // Correctly calculate right coordinate
+		float viewportTop = camY + SCREEN_HEIGHT; // Correctly calculate bottom coordinate
+
+		return !((node->rightx < viewportLeft) ||
+			(node->leftx > viewportRight));
 }
 
-
-void Update(DWORD dt)
-{
-	vector<LPGAMEOBJECT> coObjects;
-	list<LPGAMEOBJECT>::iterator i;
-	for (i = objects.begin(); i != objects.end(); ++i)
+void RenderNode(QNode* node, float camX, float camY) {
+	if (node->level == Tree->HighestLevel(Tree))
 	{
-		coObjects.push_back(*i);
+		if (IsNodeVisible(node, camX, camY))
+		{
+			for (auto& obj : node->objects) {
+				obj->Render();
+			}
+		}
 	}
-
-	for (i = objects.begin(); i != objects.end(); ++i)
+	else
 	{
-		(*i)->Update(dt, &coObjects);
+		RenderNode(node->left, camX, camY);
+		RenderNode(node->right, camX, camY);
 	}
-
-
-	float cx, cy;
-	bill->GetPosition(cx, cy);
-
-	cx -= SCREEN_WIDTH / 2;
-	cy = 0;
-
-	if (cx < 0) cx = 0;
-	if (cx > LEVEL_LENGTH - SCREEN_WIDTH) cx = LEVEL_LENGTH - SCREEN_WIDTH;
-	CGame::GetInstance()->SetCamPos(cx, cy);
 }
 
 void Render()
 {
 	CGame* g = CGame::GetInstance();
-
 	ID3D10Device* pD3DDevice = g->GetDirect3DDevice();
 	IDXGISwapChain* pSwapChain = g->GetSwapChain();
 	ID3D10RenderTargetView* pRenderTargetView = g->GetRenderTargetView();
@@ -99,14 +92,46 @@ void Render()
 	FLOAT NewBlendFactor[4] = { 0,0,0,0 };
 	pD3DDevice->OMSetBlendState(g->GetAlphaBlending(), NewBlendFactor, 0xffffffff);
 
-	list<LPGAMEOBJECT>::iterator i;
-	for (i = objects.begin(); i != objects.end(); ++i)
-	{
-		(*i)->Render();
-	}
+	// You can also update camera position here if necessary
+	float camX, camY;
+	Camera->GetCamPos(camX, camY);
+
+	RenderNode(Tree, camX, camY);
 
 	spriteHandler->End();
 	pSwapChain->Present(0, 0);
+}
+
+
+void UpdateNodes(DWORD dt, QNode* node, float camX, float camY)
+{
+	if (node->level == Tree->HighestLevel(Tree))
+	{
+		if (IsNodeVisible(node, camX, camY))
+		{
+			for (auto& obj : node->objects) {
+				obj->Update(dt);
+				node->Move(obj, node, Tree);
+			}
+		}
+	}
+	else
+	{
+		UpdateNodes(dt, node->left, camX, camY);
+		UpdateNodes(dt, node->right, camX, camY);
+	}
+}
+void Update(DWORD dt)
+{
+	float x, y, cx, cy;
+	bill->GetPosition(cx, cy);
+	bill->GetPosition(x, y);
+	cx -= SCREEN_WIDTH / 2;
+	cy = 0;
+	if (cx < 0) cx = 0;
+	if (cx > LEVEL_LENGTH - SCREEN_WIDTH) cx = LEVEL_LENGTH - SCREEN_WIDTH;
+	UpdateNodes(dt, Tree, cx, cy);
+	Render();
 }
 
 HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int ScreenHeight)
@@ -176,19 +201,21 @@ int Run()
 		ULONGLONG now = GetTickCount64();
 
 		DWORD dt = (DWORD)(now - frameStart);
-
 		if (dt >= tickPerFrame)
 		{
 			frameStart = now;
 
 			game->ProcessKeyboard();
 			Update(dt);
-			Render();
 		}
 		else
 			Sleep(tickPerFrame - dt);
 	}
-
+	//a
+	Tree->Clear(Tree);
+	delete bill;
+	delete land;
+	delete game;
 	return 1;
 }
 
