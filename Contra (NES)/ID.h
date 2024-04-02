@@ -21,7 +21,7 @@
 
 #define TEXTURES_DIR L"textures"
 #define TEXTURE_PATH_BILL TEXTURES_DIR "\\BillSprites.png"
-#define TEXTURE_PATH_ENERMIES TEXTURES_DIR "\\Enermies.png"
+#define TEXTURE_PATH_ENEMIES TEXTURES_DIR "\\Enemies.png"
 #define TEXTURE_PATH_MISC TEXTURES_DIR "\\Misc.png"
 
 //keyboard stuff
@@ -105,5 +105,5 @@
 
 #define ID_ANI_GREEDER_RUN_LEFT 20010
 
-#define GREEDER_RUNNING_SPEED		0.2f
+#define GREEDER_RUNNING_SPEED		0.1f
 

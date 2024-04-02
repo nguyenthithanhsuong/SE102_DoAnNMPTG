@@ -11,7 +11,7 @@ void CGreeder::Render()
 void CGreeder::Update(DWORD dt)
 { //cap nhat: kiem tra dieu kien truoc khi doi x y
     x -= vx * dt;
-    DebugOut(L"x = %f, y = %f\n", x);
+    DebugOut(L"Enemy: x = %f, y = %f\n", x);
 	int BackBufferWidth = CGame::GetInstance()->GetBackBufferWidth();
 	if (x <= 0 || x >= BackBufferWidth - GREEDER_WIDTH) {
 

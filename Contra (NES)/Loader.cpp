@@ -258,19 +258,19 @@ void Loader::LoadGreeder()
 {
 	CTextures* textures = CTextures::GetInstance();
 
-	textures->Add(ID_TEX_GREEDER, TEXTURE_PATH_ENERMIES);
+	textures->Add(ID_TEX_GREEDER, TEXTURE_PATH_ENEMIES);
 
 	CSprites* sprites = CSprites::GetInstance();
 	CAnimations* animations = CAnimations::GetInstance();
 
 	LPTEXTURE texGreeder = textures->Get(ID_TEX_GREEDER);
 	//run left
-	sprites->Add(20011, 158, 17, 174, 32, texGreeder);
-	sprites->Add(20012, 175, 17, 191, 32, texGreeder);
-	sprites->Add(20013, 192, 17, 208, 32, texGreeder);
-	sprites->Add(20014, 209, 17, 225, 32, texGreeder);
-	sprites->Add(20015, 226, 17, 242, 32, texGreeder);
-	sprites->Add(20016, 243, 17, 259, 32, texGreeder);
+	sprites->Add(20011, 649, 17, 664, 49, texGreeder);
+	sprites->Add(20012, 666, 17, 681, 49, texGreeder);
+	sprites->Add(20013, 683, 17, 698, 49, texGreeder);
+	sprites->Add(20014, 700, 17, 715, 49, texGreeder);
+	sprites->Add(20015, 717, 17, 732, 49, texGreeder);
+	sprites->Add(20016, 734, 17, 750, 49, texGreeder);
 	
 	LPANIMATION ani;
 	ani = new CAnimation(50);
