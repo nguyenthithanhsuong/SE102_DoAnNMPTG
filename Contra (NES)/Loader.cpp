@@ -253,3 +253,35 @@ void Loader::LoadSky()
 		}
 	}
 }
+
+void Loader::LoadGreeder()
+{
+	CTextures* textures = CTextures::GetInstance();
+
+	textures->Add(ID_TEX_GREEDER, TEXTURE_PATH_ENERMIES);
+
+	CSprites* sprites = CSprites::GetInstance();
+	CAnimations* animations = CAnimations::GetInstance();
+
+	LPTEXTURE texGreeder = textures->Get(ID_TEX_GREEDER);
+	//run left
+	sprites->Add(20011, 158, 17, 174, 32, texGreeder);
+	sprites->Add(20012, 175, 17, 191, 32, texGreeder);
+	sprites->Add(20013, 192, 17, 208, 32, texGreeder);
+	sprites->Add(20014, 209, 17, 225, 32, texGreeder);
+	sprites->Add(20015, 226, 17, 242, 32, texGreeder);
+	sprites->Add(20016, 243, 17, 259, 32, texGreeder);
+	
+	LPANIMATION ani;
+	ani = new CAnimation(50);
+	ani->Add(20011);
+	ani->Add(20012);
+	ani->Add(20013);
+	ani->Add(20014);
+	ani->Add(20015);
+	ani->Add(20016);
+	animations->Add(ID_ANI_GREEDER_RUN_LEFT, ani);
+
+	greeder = new CGreeder(GREEDER_START_X, GREEDER_START_Y, GREEDER_RUNNING_SPEED);
+	Tree->Insert(greeder);
+}

@@ -13,6 +13,7 @@
 
 #define ID_TEX_BILL 0
 #define ID_TEX_MISC 10
+#define ID_TEX_GREEDER 20
  
 //toa do O doi xuong duoi ben trai - the gioi thuc, ko su dung ground_y khi co collision
 //chi xai O tren trai cho ham ve/draw - the gioi ao
@@ -20,6 +21,7 @@
 
 #define TEXTURES_DIR L"textures"
 #define TEXTURE_PATH_BILL TEXTURES_DIR "\\BillSprites.png"
+#define TEXTURE_PATH_ENERMIES TEXTURES_DIR "\\Enermies.png"
 #define TEXTURE_PATH_MISC TEXTURES_DIR "\\Misc.png"
 
 //keyboard stuff
@@ -92,3 +94,16 @@
 
 #define ID_ANI_BILL_LOOK_UP_RIGHT 1600
 #define ID_ANI_BILL_LOOK_UP_LEFT 1601
+
+// GREEDER STUFF
+
+#define GREEDER_WIDTH 22.0f
+#define GREEDER_HEIGHT 40.0f
+
+#define GREEDER_START_X 50.0f
+#define GREEDER_START_Y GROUND_Y
+
+#define ID_ANI_GREEDER_RUN_LEFT 20010
+
+#define GREEDER_RUNNING_SPEED		0.2f
+

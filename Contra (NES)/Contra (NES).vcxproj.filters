@@ -52,6 +52,9 @@
     <ClCompile Include="Deleted.cpp">
       <Filter>Game\Game\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Greeder.cpp">
+      <Filter>Game\Characters\Greeder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bill.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="Deleted.h">
       <Filter>Game\Game\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Greeder.h">
+      <Filter>Game\Characters\Greeder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">
@@ -169,6 +175,9 @@
     </Filter>
     <Filter Include="Game\Game\Tree">
       <UniqueIdentifier>{b7fb0613-d286-4e9a-b7a5-da647d8ca707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\Greeder">
+      <UniqueIdentifier>{df04e456-889d-4179-a54d-09423faa3272}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

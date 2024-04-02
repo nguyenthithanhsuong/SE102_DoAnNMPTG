@@ -22,6 +22,7 @@
 CBill* bill = NULL;
 CLand* land = NULL;
 CGame* game;
+CGreeder* greeder = NULL;
 
 CCamera* Camera = new CCamera();
 CSampleKeyHandler* keyHandler;
@@ -47,6 +48,7 @@ void LoadResources()
 	load.LoadSky();
 	load.LoadLand();
 	load.LoadBill();
+	load.LoadGreeder();
 }
 
 bool IsNodeVisible(QNode* node, float camX, float camY) 

@@ -12,6 +12,7 @@
 #include "Sprites.h"
 
 #include "Bill.h"
+#include "Greeder.h"
 #include "Land.h"
 
 #include "SampleKeyEventHandler.h"
@@ -22,6 +23,7 @@
 extern CBill* bill;
 extern CLand* land;
 extern CGame* game;
+extern CGreeder* greeder;
 
 extern CSampleKeyHandler* keyHandler;
 extern QNode* Tree;
@@ -32,4 +34,5 @@ public:
 	void LoadBill();
 	void LoadLand();
 	void LoadSky();
+	void LoadGreeder();
 };
