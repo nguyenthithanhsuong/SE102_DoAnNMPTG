@@ -3,7 +3,10 @@
 void CGreeder::Render()
 {
     LPANIMATION ani;
-    ani = CAnimations::GetInstance()->Get(ID_ANI_GREEDER_RUN_LEFT);
+	if (state==true)
+		ani = CAnimations::GetInstance()->Get(ID_ANI_GREEDER_RUN_RIGHT);
+	else
+		ani = CAnimations::GetInstance()->Get(ID_ANI_GREEDER_RUN_LEFT);
     ani->Render(x, y);
 }
 
@@ -26,6 +29,10 @@ void CGreeder::Update(DWORD dt)
 			x = (float)(BackBufferWidth - GREEDER_WIDTH);
 		}
 	}
+	if (vx > 0)
+		state = false;
+	else
+		state = true;
 }
 
 

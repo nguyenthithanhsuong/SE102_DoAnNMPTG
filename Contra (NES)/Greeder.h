@@ -13,6 +13,7 @@ class Loader;
 class CGreeder : public CGameObject
 {
 	float vx;
+	bool state = true;
 public:
 	CGreeder(float x, float y, float vx) : CGameObject(x, y)
 	{

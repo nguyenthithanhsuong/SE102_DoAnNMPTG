@@ -264,14 +264,15 @@ void Loader::LoadGreeder()
 	CAnimations* animations = CAnimations::GetInstance();
 
 	LPTEXTURE texGreeder = textures->Get(ID_TEX_GREEDER);
+
 	//run left
-	sprites->Add(20011, 649, 17, 664, 49, texGreeder);
-	sprites->Add(20012, 666, 17, 681, 49, texGreeder);
-	sprites->Add(20013, 683, 17, 698, 49, texGreeder);
-	sprites->Add(20014, 700, 17, 715, 49, texGreeder);
-	sprites->Add(20015, 717, 17, 732, 49, texGreeder);
-	sprites->Add(20016, 734, 17, 750, 49, texGreeder);
-	
+	sprites->Add(20011, 649, 17, 664, 48, texGreeder);
+	sprites->Add(20012, 666, 17, 681, 48, texGreeder);
+	sprites->Add(20013, 683, 17, 698, 48, texGreeder);
+	sprites->Add(20014, 700, 17, 715, 48, texGreeder);
+	sprites->Add(20015, 717, 17, 732, 48, texGreeder);
+	sprites->Add(20016, 734, 17, 749, 48, texGreeder);
+
 	LPANIMATION ani;
 	ani = new CAnimation(50);
 	ani->Add(20011);
@@ -281,6 +282,22 @@ void Loader::LoadGreeder()
 	ani->Add(20015);
 	ani->Add(20016);
 	animations->Add(ID_ANI_GREEDER_RUN_LEFT, ani);
+
+	//run right
+	sprites->Add(20017, 908 - 664, 459, 908 - 649, 490, texGreeder);
+	sprites->Add(20018, 908 - 681, 459, 908 - 666, 490, texGreeder);
+	sprites->Add(20019, 908 - 698, 459, 908 - 683, 490, texGreeder);
+	sprites->Add(20020, 908 - 715, 459, 908 - 700, 490, texGreeder);
+	sprites->Add(20021, 908 - 732, 459, 908 - 717, 490, texGreeder);
+	sprites->Add(20022, 908 - 749, 459, 908 - 734, 490, texGreeder);
+	ani = new CAnimation(50);
+	ani->Add(20017);
+	ani->Add(20018);
+	ani->Add(20019);
+	ani->Add(20020);
+	ani->Add(20021);
+	ani->Add(20022);
+	animations->Add(ID_ANI_GREEDER_RUN_RIGHT, ani);
 
 	greeder = new CGreeder(GREEDER_START_X, GREEDER_START_Y, GREEDER_RUNNING_SPEED);
 	Tree->Insert(greeder);
