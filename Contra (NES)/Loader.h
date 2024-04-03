@@ -35,4 +35,5 @@ public:
 	void LoadLand();
 	void LoadSky();
 	void LoadGreeder();
+	void LoadMap();
 };

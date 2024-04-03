@@ -301,4 +301,40 @@ void Loader::LoadGreeder()
 
 	greeder = new CGreeder(GREEDER_START_X, GREEDER_START_Y, GREEDER_RUNNING_SPEED);
 	Tree->Insert(greeder);
+
+	greeder = new CGreeder(GREEDER_START_X+400, GREEDER_START_Y, GREEDER_RUNNING_SPEED);
+	Tree->Insert(greeder);
+}
+
+void Loader::LoadMap()
+{
+	CTextures* textures = CTextures::GetInstance();
+
+	textures->Add(ID_TEX_MAP_STAGE_1, TEXTURE_PATH_STAGE_1_MAP);
+
+	CSprites* sprites = CSprites::GetInstance();
+	CAnimations* animations = CAnimations::GetInstance();
+
+	LPTEXTURE texMAP = textures->Get(ID_TEX_MAP_STAGE_1);
+	LPANIMATION ani;
+
+	for (int i = 0; i < 103; i++)
+	{
+		sprites->Add(30000 + i, 0 + 32 * i, 0, 31 + 32 * i, 31, texMAP);
+		ani = new CAnimation(100);
+		ani->Add(30000 + i);
+		animations->Add(ID_ANI_STAGE_1_0 + i, ani);
+	}
+
+	Tilemap* tilemap = new Tilemap();
+	tilemap->FetchTilemap();
+	for (int i = 0; i < tilemap->row; i++)
+	{
+		for (int j = 0; j < tilemap->column; j++)
+		{
+			CLand* land = new CLand(0.0f + MAP_TILE_WIDTH * j, SCREEN_HEIGHT - MAP_TILE_WIDTH * i - MAP_TILE_WIDTH * 3 / 2);
+			land->SetState(tilemap->tilemaparray[i][j]);
+			Tree->Insert(land);
+		}
+	}
 }

@@ -16,7 +16,7 @@ void CGreeder::Update(DWORD dt)
     x -= vx * dt;
     DebugOut(L"Enemy: x = %f, y = %f\n", x);
 	int BackBufferWidth = CGame::GetInstance()->GetBackBufferWidth();
-	if (x <= 0 || x >= BackBufferWidth - GREEDER_WIDTH) {
+	if (x <= 0 || x >= LEVEL_LENGTH - GREEDER_WIDTH) {
 
 		vx = -vx;
 
@@ -24,9 +24,9 @@ void CGreeder::Update(DWORD dt)
 		{
 			x = 0;
 		}
-		else if (x >= BackBufferWidth - GREEDER_WIDTH)
+		else if (x >= LEVEL_LENGTH - GREEDER_WIDTH)
 		{
-			x = (float)(BackBufferWidth - GREEDER_WIDTH);
+			x = (float)(LEVEL_LENGTH - GREEDER_WIDTH);
 		}
 	}
 	if (vx > 0)

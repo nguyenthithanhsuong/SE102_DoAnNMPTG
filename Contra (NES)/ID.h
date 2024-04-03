@@ -7,22 +7,24 @@
 
 #define BACKGROUND_COLOR D3DXCOLOR(255.0f/255, 255.0f/255, 255.0f/255, 0.0f)
 
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 240
-#define LEVEL_LENGTH 800
+#define SCREEN_WIDTH 420
+#define SCREEN_HEIGHT 272
+#define LEVEL_LENGTH 1684
 
 #define ID_TEX_BILL 0
 #define ID_TEX_MISC 10
 #define ID_TEX_GREEDER 20
+#define ID_TEX_MAP_STAGE_1 30
  
 //toa do O doi xuong duoi ben trai - the gioi thuc, ko su dung ground_y khi co collision
 //chi xai O tren trai cho ham ve/draw - the gioi ao
-#define GROUND_Y 100.0f
+#define GROUND_Y 140.0f
 
 #define TEXTURES_DIR L"textures"
 #define TEXTURE_PATH_BILL TEXTURES_DIR "\\BillSprites.png"
 #define TEXTURE_PATH_ENEMIES TEXTURES_DIR "\\Enemies.png"
 #define TEXTURE_PATH_MISC TEXTURES_DIR "\\Misc.png"
+#define TEXTURE_PATH_STAGE_1_MAP TEXTURES_DIR "\\Stage1Map.png"
 
 //keyboard stuff
 #define ON_KEY_UP 1
@@ -37,11 +39,14 @@
 #define ID_ANI_LAND_3 2003
 #define ID_ANI_LAND_4 2004
 #define ID_ANI_LAND_5 2005
-#define LAND_WIDTH 24
+#define LAND_WIDTH 24.0f
+
+#define ID_ANI_STAGE_1_0 3000
+#define MAP_TILE_WIDTH 32.0f
 
  //BILL STUFF
 
-#define BILL_WIDTH 22.0f
+#define BILL_WIDTH 40.0f
 #define BILL_HEIGHT 40.0f
 
 #define BILL_START_X 30.0f
@@ -106,5 +111,5 @@
 #define ID_ANI_GREEDER_RUN_LEFT 20010
 #define ID_ANI_GREEDER_RUN_RIGHT 20020
 
-#define GREEDER_RUNNING_SPEED		0.1f
+#define GREEDER_RUNNING_SPEED		0.15f
 

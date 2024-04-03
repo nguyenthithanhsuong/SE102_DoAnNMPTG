@@ -45,8 +45,9 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 void LoadResources()
 {
 	Loader load;
-	load.LoadSky();
-	load.LoadLand();
+	/*load.LoadSky();*/
+	/*load.LoadLand();*/
+	load.LoadMap();
 	load.LoadBill();
 	load.LoadGreeder();
 }
@@ -58,8 +59,8 @@ bool IsNodeVisible(QNode* node, float camX, float camY)
 		float viewportRight = camX + SCREEN_WIDTH; // Correctly calculate right coordinate
 		float viewportTop = camY + SCREEN_HEIGHT; // Correctly calculate bottom coordinate
 
-		return !((node->rightx < viewportLeft) ||
-			(node->leftx > viewportRight));
+		return !((node->rightx < viewportLeft - MAP_TILE_WIDTH) ||
+			(node->leftx > viewportRight + MAP_TILE_WIDTH));
 }
 
 void RenderNode(QNode* node, float camX, float camY) {
@@ -109,13 +110,11 @@ void UpdateNodes(DWORD dt, QNode* node, float camX, float camY)
 {
 	if (node->level == Tree->HighestLevel(Tree))
 	{
-		if (IsNodeVisible(node, camX, camY))
-		{
 			for (auto& obj : node->objects) {
 				obj->Update(dt);
 				node->Move(obj, node, Tree);
 			}
-		}
+		
 	}
 	else
 	{

@@ -10,16 +10,17 @@ void CLand::Update(DWORD dt)
 }
 void CLand::GetBoundingBox(float& l, float& t, float& r, float& b)
 {
-	l = x - LAND_WIDTH / 2;
-	t = y - LAND_WIDTH / 2;
-	r = l + LAND_WIDTH;
-	b = t + LAND_WIDTH;
+	l = x - MAP_TILE_WIDTH / 2;
+	t = y - MAP_TILE_WIDTH / 2;
+	r = l + MAP_TILE_WIDTH;
+	b = t + MAP_TILE_WIDTH;
 }
 
 void CLand::Render()
 {
 	CAnimations* animations = CAnimations::GetInstance();
 	int aniId = -1;
+	/*
 	switch (state)
 	{
 	case(0):
@@ -41,6 +42,8 @@ void CLand::Render()
 		animations->Get(ID_ANI_LAND_5)->Render(x, y);
 		break;
 	}
+	*/
+	animations->Get(ID_ANI_STAGE_1_0 + state)->Render(x, y);
 }
 
 void CLand::SetState(int state)
