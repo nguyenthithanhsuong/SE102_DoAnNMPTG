@@ -24,8 +24,10 @@ class CGameObject
 {
 protected:
 
+	int ObjectID = 0;
 	float x; 
 	float y;
+	float z=0.5;
 
 	float vx; //velocity x
 	float vy; //velocity y

@@ -12,6 +12,7 @@ class Loader;
 
 class CBill : public CGameObject
 {
+	int ObjectID = 1;
 	int state;
 	bool left;
 	bool right;

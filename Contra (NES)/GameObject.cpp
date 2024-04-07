@@ -12,26 +12,25 @@ CGameObject::CGameObject()
 	isDeleted = false;
 }
 
-void CGameObject::RenderBoundingBox()
-{
-	D3DXVECTOR3 p(x, y, 0);
-	RECT rect;
-
-	LPTEXTURE bbox = CTextures::GetInstance()->Get(ID_TEX_BBOX);
-
-	float l, t, r, b;
-
-	GetBoundingBox(l, t, r, b);
-	rect.left = 0;
-	rect.top = 0;
-	rect.right = (int)r - (int)l;
-	rect.bottom = (int)b - (int)t;
-
-	float cx, cy;
-	Camera->GetCamPos(cx, cy);
-
-	CGame::GetInstance()->Draw(x - cx, y - cy, bbox, rect.left, rect.top, rect.right, rect.bottom, 0.25f);
-}
+//void CGameObject::RenderBoundingBox()
+//{
+//	/*D3DXVECTOR3 p(x, y, 0);
+//	RECT rect;
+//
+//	LPTEXTURE bbox = CTextures::GetInstance()->Get(ID_TEX_BBOX);
+//
+//	float l, t, r, b;
+//
+//	GetBoundingBox(l, t, r, b);
+//	rect.left = 0;
+//	rect.top = 0;
+//	rect.right = (int)r - (int)l;
+//	rect.bottom = (int)b - (int)t;
+//
+//	Camera->DrawCoordinate(x,y);
+//
+//	CGame::GetInstance()->Draw(x, y, bbox, rect.left, rect.top, rect.right, rect.bottom, 1.0f);*/
+//}
 
 CGameObject::~CGameObject()
 {

@@ -18,6 +18,8 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
 	ZeroMemory(&swapChainDesc, sizeof(swapChainDesc));
 
+
+
 	swapChainDesc.BufferCount = 1;
 	swapChainDesc.BufferDesc.Width = backBufferWidth;
 	swapChainDesc.BufferDesc.Height = backBufferHeight;
@@ -44,6 +46,48 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 		DebugOut((wchar_t*)L"[ERROR] D3D10CreateDeviceAndSwapChain has failed %s %d", _W(__FILE__), __LINE__);
 		return;
 	}
+
+	// Create depth stencil buffer
+	D3D10_TEXTURE2D_DESC depthStencilDesc;
+	depthStencilDesc.Width = backBufferWidth;
+	depthStencilDesc.Height = backBufferHeight;
+	depthStencilDesc.MipLevels = 1;
+	depthStencilDesc.ArraySize = 1;
+	depthStencilDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT; // Depth-stencil format
+	depthStencilDesc.SampleDesc.Count = 1;
+	depthStencilDesc.SampleDesc.Quality = 0;
+	depthStencilDesc.Usage = D3D10_USAGE_DEFAULT;
+	depthStencilDesc.BindFlags = D3D10_BIND_DEPTH_STENCIL;
+	depthStencilDesc.CPUAccessFlags = 0;
+	depthStencilDesc.MiscFlags = 0;
+
+	pD3DDevice->CreateTexture2D(&depthStencilDesc, NULL, &pDepthStencilBuffer);
+
+	// Create depth stencil view
+	D3D10_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
+	depthStencilViewDesc.Format = depthStencilDesc.Format;
+	depthStencilViewDesc.ViewDimension = D3D10_DSV_DIMENSION_TEXTURE2D;
+	depthStencilViewDesc.Texture2D.MipSlice = 0;
+
+	pD3DDevice->CreateDepthStencilView(pDepthStencilBuffer, &depthStencilViewDesc, &pDepthStencilView);
+
+	// Bind depth stencil view to output merger stage
+	pD3DDevice->OMSetRenderTargets(1, &pRenderTargetView, pDepthStencilView);
+
+	// Configure depth stencil state
+	D3D10_DEPTH_STENCIL_DESC depthStencilStateDesc;
+	ZeroMemory(&depthStencilStateDesc, sizeof(depthStencilStateDesc));
+	depthStencilStateDesc.DepthEnable = true;
+	depthStencilStateDesc.DepthWriteMask = D3D10_DEPTH_WRITE_MASK_ALL;
+	depthStencilStateDesc.DepthFunc = D3D10_COMPARISON_LESS;
+
+	ID3D10DepthStencilState* pDepthStencilState;
+	pD3DDevice->CreateDepthStencilState(&depthStencilStateDesc, &pDepthStencilState);
+	pD3DDevice->OMSetDepthStencilState(pDepthStencilState, 1);
+
+	// Release depth stencil state
+	pDepthStencilState->Release();
+
 
 	ID3D10Texture2D* pBackBuffer;
 	hr = pSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), (LPVOID*)&pBackBuffer);

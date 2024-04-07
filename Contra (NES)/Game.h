@@ -40,6 +40,10 @@ class CGame
 	BYTE  keyStates[KEYBOARD_STATE_SIZE];	
 	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];	
 
+	//depth buffer
+	ID3D10DepthStencilView* pDepthStencilView = NULL;
+	ID3D10Texture2D* pDepthStencilBuffer = NULL;
+
 	LPKEYEVENTHANDLER keyHandler;
 
 	HINSTANCE hInstance;
@@ -55,12 +59,12 @@ public:
 
 	void Draw(float x, float y, LPTEXTURE tex, int l, int t, int r, int b, float alpha = 1.0f) 
 	{
-		RECT rect;
+		/*RECT rect;
 		rect.left = l;
 		rect.top = t;
 		rect.right = r;
 		rect.bottom = b;
-		this->Draw(x, y, tex, &rect, alpha);
+		this->Draw(x, y, tex, &rect, alpha);*/
 	}
 
 	LPTEXTURE LoadTexture(LPCWSTR texturePath);

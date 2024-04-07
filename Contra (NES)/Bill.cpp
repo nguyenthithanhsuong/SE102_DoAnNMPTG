@@ -63,7 +63,7 @@ void CBill::Render()
         }
 
 
-    animations->Get(aniId)->Render(x, y);
+    animations->Get(aniId)->Render(x, y, z);
 }
 
 void CBill::SetState(int state)
@@ -80,7 +80,7 @@ void CBill::SetState(int keycode, int action)
         {
         case ON_KEY_DOWN:
 
-            if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_IDLE))
+            if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_IDLE) || GetState(BILL_STATE_WALK_LOOK_DOWN) || GetState(BILL_STATE_WALK_LOOK_UP))
             {
                 SetState(BILL_STATE_JUMP);
             }
@@ -254,13 +254,6 @@ void CBill::Update(DWORD dt)
     if (vx > 0 && x > LEVEL_LENGTH - BILL_WIDTH) x = LEVEL_LENGTH - BILL_WIDTH;
     if (vx < 0 && x < 0 + BILL_WIDTH) x = 0 + BILL_WIDTH;
 
-    float cx, cy;
-    GetPosition(cx, cy);
-    cx -= SCREEN_WIDTH / 2;
-    cy = 0;
-    if (cx < 0) cx = 0;
-    if (cx > LEVEL_LENGTH - SCREEN_WIDTH) cx = LEVEL_LENGTH - SCREEN_WIDTH;
-    Camera->SetCamPos(cx, cy);
 }
 
 

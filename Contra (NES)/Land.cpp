@@ -43,7 +43,7 @@ void CLand::Render()
 		break;
 	}
 	*/
-	animations->Get(ID_ANI_STAGE_1_0 + state)->Render(x, y);
+	animations->Get(ID_ANI_STAGE_1_0 + state)->Render(x, y, z);
 }
 
 void CLand::SetState(int state)

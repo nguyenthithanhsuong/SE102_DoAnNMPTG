@@ -28,21 +28,21 @@ CSprite::CSprite(int id, int left, int top, int right, int bottom, LPTEXTURE tex
 	D3DXMatrixScaling(&this->matScaling, (FLOAT)spriteWidth, (FLOAT)spriteHeight, 1.0f);
 }
 
-void CSprite::Draw(float x, float y)
+void CSprite::Draw(float x, float y, float z)
 {
 	CGame* g = CGame::GetInstance();
-	float cx, cy;
-	Camera->GetCamPos(cx, cy);
 
-	cx = (FLOAT)floor(cx);
-	cy = (FLOAT)floor(cy);
+	x = (FLOAT)floor(x);
+	y = (FLOAT)floor(y);
+
+	Camera->DrawCoordinate(x, y);
 
 	D3DXMATRIX matTranslation;
 
 	x = (FLOAT)floor(x);
 	y = (FLOAT)floor(y);
 
-	D3DXMatrixTranslation(&matTranslation, x - cx, y, 0.1f);
+	D3DXMatrixTranslation(&matTranslation, x, y, 0.1f);
 
 	this->sprite.matWorld = (this->matScaling * matTranslation);
 

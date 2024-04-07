@@ -7,7 +7,7 @@ void CGreeder::Render()
 		ani = CAnimations::GetInstance()->Get(ID_ANI_GREEDER_RUN_RIGHT);
 	else
 		ani = CAnimations::GetInstance()->Get(ID_ANI_GREEDER_RUN_LEFT);
-    ani->Render(x, y);
+    ani->Render(x, y, z);
 }
 
 

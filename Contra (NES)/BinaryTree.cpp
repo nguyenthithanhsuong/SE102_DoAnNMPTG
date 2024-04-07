@@ -5,14 +5,12 @@ QNode::QNode()
 	leftx = 0; topy = SCREEN_HEIGHT;
 	rightx = LEVEL_LENGTH; boty = 0;
 	left = NULL; right = NULL;
-	Split();
 }
 QNode::QNode(int level, float a1, float b1, float a2, float b2)
 {
 	this->level = level;
 	leftx = a1; topy = b1;
 	rightx = a2; boty = b2;
-	Split();
 }
 void QNode::Clear(QNode* node)
 {
@@ -58,9 +56,6 @@ void QNode::Insert(CGameObject* object)
 	// Check if the object intersects with the current node
 	if (IsContain(object))
 	{
-		// Insert the object into this node
-		objects.push_back(object);
-
 		// Split the node if it hasn't been split yet
 		if (left == nullptr && right == nullptr)
 		{
@@ -75,10 +70,13 @@ void QNode::Insert(CGameObject* object)
 			if (right->IsContain(object))
 				right->Insert(object);
 		}
+
+		// Insert the object into this node
+		objects.push_back(object);
 	}
 }
 
-void QNode::Move(CGameObject* object, QNode* node, QNode* Tree)
+void QNode::Get(CGameObject* object, QNode* node, QNode* Tree)
 {
 	if (!node->IsContain(object))
 	{
@@ -97,9 +95,9 @@ void QNode::Move(CGameObject* object, QNode* node, QNode* Tree)
 		else
 		{
 			if (left != nullptr && left->IsContain(object))
-				left->Move(object, left, Tree);
+				left->Get(object, left, Tree);
 			else if (right != nullptr && right->IsContain(object))
-				right->Move(object, right, Tree);
+				right->Get(object, right, Tree);
 		}
 	}
 }

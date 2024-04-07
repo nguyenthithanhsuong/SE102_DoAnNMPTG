@@ -108,13 +108,21 @@ void Render()
 
 void UpdateNodes(DWORD dt, QNode* node, float camX, float camY)
 {
+	float x=0, y=0;
 	if (node->level == Tree->HighestLevel(Tree))
 	{
+		if (true/*IsNodeVisible(node, camX, camY)*/)
+		{
 			for (auto& obj : node->objects) {
 				obj->Update(dt);
-				node->Move(obj, node, Tree);
+				if (obj == bill)
+				{
+					bill->GetPosition(x, y);
+					Camera->Update(x, y);
+				}
+				node->Get(obj, node, Tree);
 			}
-		
+		}
 	}
 	else
 	{
@@ -124,14 +132,9 @@ void UpdateNodes(DWORD dt, QNode* node, float camX, float camY)
 }
 void Update(DWORD dt)
 {
-	float x, y, cx, cy;
-	bill->GetPosition(cx, cy);
-	bill->GetPosition(x, y);
-	cx -= SCREEN_WIDTH / 2;
-	cy = 0;
-	if (cx < 0) cx = 0;
-	if (cx > LEVEL_LENGTH - SCREEN_WIDTH) cx = LEVEL_LENGTH - SCREEN_WIDTH;
-	UpdateNodes(dt, Tree, cx, cy);
+	float x, y;
+	Camera->GetCamPos(x, y);
+	UpdateNodes(dt, Tree, x, y);
 	Render();
 }
 

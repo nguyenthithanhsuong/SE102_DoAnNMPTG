@@ -7,9 +7,9 @@
 
 #define BACKGROUND_COLOR D3DXCOLOR(255.0f/255, 255.0f/255, 255.0f/255, 0.0f)
 
-#define SCREEN_WIDTH 420
+#define SCREEN_WIDTH 408
 #define SCREEN_HEIGHT 272
-#define LEVEL_LENGTH 1684
+#define LEVEL_LENGTH 3320
 
 #define ID_TEX_BILL 0
 #define ID_TEX_MISC 10
@@ -25,6 +25,7 @@
 #define TEXTURE_PATH_ENEMIES TEXTURES_DIR "\\Enemies.png"
 #define TEXTURE_PATH_MISC TEXTURES_DIR "\\Misc.png"
 #define TEXTURE_PATH_STAGE_1_MAP TEXTURES_DIR "\\Stage1Map.png"
+#define TEXTURE_PATH_BBOX TEXTURES_DIR "\\bbox.png"
 
 //keyboard stuff
 #define ON_KEY_UP 1
@@ -46,14 +47,13 @@
 
  //BILL STUFF
 
-#define BILL_WIDTH 40.0f
+#define BILL_WIDTH 22.0f
 #define BILL_HEIGHT 40.0f
 
 #define BILL_START_X 30.0f
 #define BILL_START_Y GROUND_Y + 50.0f
 
 #define BILL_WALK_SPEED		0.1f
-#define BILL_RUNNING_SPEED		0.2f
 
 #define BILL_JUMP_SPEED_Y		0.45f
 
