@@ -11,7 +11,9 @@
 #include "Sprites.h"
 
 #include "Bill.h"
+#include "Lance.h"
 #include "Land.h"
+#include "Title.h"
 
 #include "SampleKeyEventHandler.h"
 #include "ID.h"
@@ -20,9 +22,11 @@
 #include "Camera.h"
 
 CBill* bill = NULL;
+CLance* lance = NULL;
 CLand* land = NULL;
 CGame* game;
 CGreeder* greeder = NULL;
+CTitle* title = NULL;
 
 CCamera* Camera = new CCamera();
 CSampleKeyHandler* keyHandler;
@@ -50,6 +54,8 @@ void LoadResources()
 	load.LoadMap();
 	load.LoadBill();
 	load.LoadGreeder();
+	load.LoadTitle();
+	load.LoadLance();
 }
 
 bool IsNodeVisible(QNode* node, float camX, float camY) 
@@ -99,7 +105,20 @@ void Render()
 	float camX, camY;
 	Camera->GetCamPos(camX, camY);
 
-	RenderNode(Tree, camX, camY);
+	switch (title->scene)
+	{
+	case 0:
+		title->Render();
+		break;
+	case 1:
+		if (title->confirm == 2)
+		{
+			Tree->Insert(lance);
+			title->confirm = 1;
+		}
+		RenderNode(Tree, camX, camY);
+		break;
+	}
 
 	spriteHandler->End();
 	pSwapChain->Present(0, 0);
@@ -134,7 +153,16 @@ void Update(DWORD dt)
 {
 	float x, y;
 	Camera->GetCamPos(x, y);
-	UpdateNodes(dt, Tree, x, y);
+
+	switch (title->scene)
+	{
+	case 0:
+		title->Update(dt);
+		break;
+	case 1:
+		UpdateNodes(dt, Tree, x, y);
+		break;
+	}
 	Render();
 }
 

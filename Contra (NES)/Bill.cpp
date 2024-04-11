@@ -75,7 +75,7 @@ void CBill::SetState(int keycode, int action)
 {
     switch (keycode)
     {
-    case DIK_S: // Jump
+    case DIK_SPACE: // Jump
         switch (action)
         {
         case ON_KEY_DOWN:

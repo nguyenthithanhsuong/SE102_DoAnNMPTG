@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -135,6 +135,7 @@
     <ClCompile Include="Deleted.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Greeder.cpp" />
+    <ClCompile Include="Lance.cpp" />
     <ClCompile Include="Land.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Tilemap.cpp" />
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -154,6 +156,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Deleted.h" />
     <ClInclude Include="Greeder.h" />
+    <ClInclude Include="Lance.h" />
     <ClInclude Include="Land.h" />
     <ClInclude Include="ID.h" />
     <ClInclude Include="KeyEventHandler.h" />
@@ -168,6 +171,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Tilemap.h" />
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

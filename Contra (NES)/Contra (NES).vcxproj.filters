@@ -55,6 +55,12 @@
     <ClCompile Include="Greeder.cpp">
       <Filter>Game\Characters\Greeder</Filter>
     </ClCompile>
+    <ClCompile Include="Lance.cpp">
+      <Filter>Game\Characters\Lance</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Game\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bill.h">
@@ -120,6 +126,12 @@
     <ClInclude Include="Greeder.h">
       <Filter>Game\Characters\Greeder</Filter>
     </ClInclude>
+    <ClInclude Include="Lance.h">
+      <Filter>Game\Characters\Lance</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Game\Game\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">
@@ -178,6 +190,12 @@
     </Filter>
     <Filter Include="Game\Characters\Greeder">
       <UniqueIdentifier>{df04e456-889d-4179-a54d-09423faa3272}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\Lance">
+      <UniqueIdentifier>{0f5bc4fe-c6da-4c75-89f4-f151614a6c16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\Scene">
+      <UniqueIdentifier>{4153b875-1eb7-4099-b43d-3d60feb0ce9c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

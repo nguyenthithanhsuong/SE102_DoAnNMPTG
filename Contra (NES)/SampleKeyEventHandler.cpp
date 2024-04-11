@@ -2,18 +2,24 @@
 
 
 extern CBill* bill;
+extern CLance* lance;
+extern CTitle* title;
 
 void CSampleKeyHandler::OnKeyDown(int KeyCode)
 {
 	bill->SetState(KeyCode, ON_KEY_DOWN);
+	lance->SetState(KeyCode, ON_KEY_DOWN);
+	title->SetState(KeyCode, ON_KEY_DOWN);
 }
 
 void CSampleKeyHandler::OnKeyUp(int KeyCode)
 {
 	bill->SetState(KeyCode, ON_KEY_UP);
+	lance->SetState(KeyCode, ON_KEY_UP);
+	title->SetState(KeyCode, ON_KEY_UP);
 }
 
-void CSampleKeyHandler::KeyState(BYTE *states)
+void CSampleKeyHandler::KeyState(BYTE* states)
 {
 	CGame* game = CGame::GetInstance();
 
@@ -35,5 +41,30 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 	if (game->IsKeyDown(DIK_DOWN))
 	{
 		bill->SetState(DIK_DOWN, KEY_STATE);
+	}
+
+	if (game->IsKeyDown(DIK_D))
+	{
+		lance->SetState(DIK_D, KEY_STATE);
+	}
+	else if (game->IsKeyDown(DIK_A))
+	{
+		lance->SetState(DIK_A, KEY_STATE);
+	}
+	else
+	{
+	}
+	if (game->IsKeyDown(DIK_W))
+	{
+		lance->SetState(DIK_W, KEY_STATE);
+	}
+	if (game->IsKeyDown(DIK_S))
+	{
+		lance->SetState(DIK_S, KEY_STATE);
+	}
+
+	if (game->IsKeyDown(DIK_SPACE))
+	{
+		title->SetState(DIK_SPACE, KEY_STATE);
 	}
 }

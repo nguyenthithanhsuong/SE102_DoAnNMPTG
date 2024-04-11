@@ -4,6 +4,8 @@
 #include "debug.h"
 #include "Game.h"
 #include "Bill.h"
+#include "Lance.h"
+#include "Title.h"
 #include "ID.h"
 
 class CSampleKeyHandler: public CKeyEventHandler

@@ -169,6 +169,174 @@ void Loader::LoadBill()
 	animations->Add(ID_ANI_BILL_WALK_LOOK_DOWN_LEFT, ani);
 }
 
+void Loader::LoadLance()
+{
+	CTextures* textures = CTextures::GetInstance();
+
+	textures->Add(ID_TEX_LANCE, TEXTURE_PATH_LANCE);
+
+	CSprites* sprites = CSprites::GetInstance();
+	CAnimations* animations = CAnimations::GetInstance();
+
+	LPTEXTURE texLance = textures->Get(ID_TEX_LANCE);
+	LPANIMATION ani;
+	ani = new CAnimation(100);
+
+	//idle right
+	sprites->Add(30000, 716, 1, 779, 64, texLance);
+	ani->Add(30000);
+	animations->Add(ID_ANI_LANCE_IDLE_RIGHT, ani);
+
+	//walk right
+	sprites->Add(30001, 1, 1, 64, 64, texLance);
+	sprites->Add(30002, 66, 1, 129, 64, texLance);
+	sprites->Add(30003, 131, 1, 194, 64, texLance);
+	sprites->Add(30004, 196, 1, 259, 64, texLance);
+	sprites->Add(30005, 261, 1, 324, 64, texLance);
+	sprites->Add(30006, 326, 1, 389, 64, texLance);
+	ani = new CAnimation(100);
+	ani->Add(30001);
+	ani->Add(30002);
+	ani->Add(30003);
+	ani->Add(30004);
+	ani->Add(30005);
+	ani->Add(30006);
+	animations->Add(ID_ANI_LANCE_WALK_RIGHT, ani);
+
+	//idle left
+	sprites->Add(30010, 456, 261, 519, 324, texLance);
+	ani = new CAnimation(100);
+	ani->Add(30010);
+	animations->Add(ID_ANI_LANCE_IDLE_LEFT, ani);
+
+	//walk left
+	sprites->Add(30011, 976, 262, 1039, 325, texLance);
+	sprites->Add(30012, 911, 262, 974, 325, texLance);
+	sprites->Add(30013, 846, 262, 909, 325, texLance);
+	sprites->Add(30014, 781, 262, 844, 325, texLance);
+	sprites->Add(30015, 716, 262, 779, 325, texLance);
+	sprites->Add(30016, 651, 262, 714, 325, texLance);
+	ani = new CAnimation(100);
+	ani->Add(30011);
+	ani->Add(30012);
+	ani->Add(30013);
+	ani->Add(30014);
+	ani->Add(30015);
+	ani->Add(30016);
+	animations->Add(ID_ANI_LANCE_WALK_LEFT, ani);
+
+	// JUMP WALK RIGHT
+	sprites->Add(30021, 781, 66, 844, 129, texLance);
+	sprites->Add(30022, 781 + 65, 66, 844 + 65, 129, texLance);
+	sprites->Add(30023, 781 + 65 * 2, 66, 844 + 65 * 2, 129, texLance);
+	sprites->Add(30024, 781 + 65 * 3, 66, 844 + 65 * 3, 129, texLance);
+	ani = new CAnimation(100);
+	ani->Add(30021);
+	ani->Add(30022);
+	ani->Add(30023);
+	ani->Add(30024);
+	animations->Add(ID_ANI_LANCE_JUMP_RIGHT, ani);
+
+	// JUMP WALK LEFT
+	sprites->Add(30025, 196, 326, 259, 389, texLance);
+	sprites->Add(30026, 196 - 65, 326, 259 - 65, 389, texLance);
+	sprites->Add(30027, 196 - 65 * 2, 326, 259 - 65 * 2, 389, texLance);
+	sprites->Add(30028, 196 - 65 * 3, 326, 259 - 65 * 3, 389, texLance);
+	ani = new CAnimation(100);
+	ani->Add(30025);
+	ani->Add(30026);
+	ani->Add(30027);
+	ani->Add(30028);
+	animations->Add(ID_ANI_LANCE_JUMP_LEFT, ani);
+
+	// LOOK UP RIGHT AND LEFT
+	sprites->Add(30031, 781, 1, 844, 64, texLance);
+	sprites->Add(30032, 196, 261, 259, 324, texLance);
+	ani = new CAnimation(100);
+	ani->Add(30031);
+	animations->Add(ID_ANI_LANCE_LOOK_UP_RIGHT, ani);
+
+	ani = new CAnimation(100);
+	ani->Add(30032);
+	animations->Add(ID_ANI_LANCE_LOOK_UP_LEFT, ani);
+	// SIT RIGHT/LEFT
+	sprites->Add(30051, 911, 1, 974, 64, texLance);
+	sprites->Add(30052, 66, 261, 129, 324, texLance);
+	ani = new CAnimation(100);
+	ani->Add(30051);
+	animations->Add(ID_ANI_LANCE_SIT_RIGHT, ani);
+
+	ani = new CAnimation(100);
+	ani->Add(30052);
+	animations->Add(ID_ANI_LANCE_SIT_LEFT, ani);
+
+	// WALK LOOK UP RIGHT
+	sprites->Add(10061, 1, 66, 64, 129, texLance);
+	sprites->Add(10062, 66, 66, 129, 129, texLance);
+	sprites->Add(10063, 131, 66, 194, 129, texLance);
+	sprites->Add(10064, 196, 66, 259, 129, texLance);
+	sprites->Add(10065, 261, 66, 324, 129, texLance);
+	sprites->Add(10066, 326, 66, 389, 129, texLance);
+	ani = new CAnimation(100);
+	ani->Add(10061);
+	ani->Add(10062);
+	ani->Add(10063);
+	ani->Add(10064);
+	ani->Add(10065);
+	ani->Add(10066);
+	animations->Add(ID_ANI_LANCE_WALK_LOOK_UP_RIGHT, ani);
+
+	//WALK LOOK UP LEFT
+	sprites->Add(10071, 976, 327, 1039, 390, texLance);
+	sprites->Add(10072, 911, 327, 974, 390, texLance);
+	sprites->Add(10073, 846, 327, 909, 390, texLance);
+	sprites->Add(10074, 781, 327, 844, 390, texLance);
+	sprites->Add(10075, 716, 327, 779, 390, texLance);
+	sprites->Add(10076, 651, 327, 714, 390, texLance);
+	ani = new CAnimation(100);
+	ani->Add(10071);
+	ani->Add(10072);
+	ani->Add(10073);
+	ani->Add(10074);
+	ani->Add(10075);
+	ani->Add(10076);
+	animations->Add(ID_ANI_LANCE_WALK_LOOK_UP_LEFT, ani);
+
+	// WALK LOOK DOWN RIGHT
+	sprites->Add(10081, 391, 66, 454, 129, texLance);
+	sprites->Add(10082, 456, 66, 519, 129, texLance);
+	sprites->Add(10083, 521, 66, 584, 129, texLance);
+	sprites->Add(10084, 586, 66, 649, 129, texLance);
+	sprites->Add(10085, 651, 66, 714, 129, texLance);
+	sprites->Add(10086, 716, 66, 779, 129, texLance);
+	ani = new CAnimation(100);
+	ani->Add(10081);
+	ani->Add(10082);
+	ani->Add(10083);
+	ani->Add(10084);
+	ani->Add(10085);
+	ani->Add(10086);
+	animations->Add(ID_ANI_LANCE_WALK_LOOK_DOWN_RIGHT, ani);
+
+	//WALK LOOK DOWN LEFT
+	sprites->Add(10091, 586, 327, 649, 390, texLance);
+	sprites->Add(10092, 521, 327, 584, 390, texLance);
+	sprites->Add(10093, 456, 327, 519, 390, texLance);
+	sprites->Add(10094, 391, 327, 454, 390, texLance);
+	sprites->Add(10095, 326, 327, 389, 390, texLance);
+	sprites->Add(10096, 261, 327, 324, 390, texLance);
+	ani = new CAnimation(100);
+	ani->Add(10091);
+	ani->Add(10092);
+	ani->Add(10093);
+	ani->Add(10094);
+	ani->Add(10095);
+	ani->Add(10096);
+	animations->Add(ID_ANI_LANCE_WALK_LOOK_DOWN_LEFT, ani);
+
+	lance = new CLance(LANCE_START_X, LANCE_START_Y);
+}
+
 void Loader::LoadLand()
 {
 	CTextures* textures = CTextures::GetInstance();
@@ -337,4 +505,43 @@ void Loader::LoadMap()
 			Tree->Insert(land);
 		}
 	}
+}
+
+void Loader::LoadTitle()
+{
+	CTextures* textures = CTextures::GetInstance();
+
+	textures->Add(ID_TEX_TITLE, TEXTURE_PATH_TITLE);
+
+	CSprites* sprites = CSprites::GetInstance();
+	CAnimations* animations = CAnimations::GetInstance();
+
+	LPTEXTURE texTitle = textures->Get(ID_TEX_TITLE);
+	LPANIMATION ani;
+
+	//BG
+	sprites->Add(40041, 0, 0, 194, 207, texTitle);
+	ani = new CAnimation(100);
+	ani->Add(40041);
+	animations->Add(ID_ANI_TITLE_RUN_RIGHT, ani);
+
+	//Choice1
+	sprites->Add(40011, 29, 214, 93, 220, texTitle);
+	ani = new CAnimation(100);
+	ani->Add(40011);
+	animations->Add(ID_MENU1, ani);
+
+	//Choice2
+	sprites->Add(40021, 105, 214, 177, 220, texTitle);
+	ani = new CAnimation(100);
+	ani->Add(40021);
+	animations->Add(ID_MENU2, ani);
+
+	//Badge
+	sprites->Add(40031, 0, 213, 15, 222, texTitle);
+	ani = new CAnimation(100);
+	ani->Add(40031);
+	animations->Add(ID_BADGE, ani);
+
+	title = new CTitle(TITLE_START_X, TITLE_START_Y, TITLE_SPEED);
 }
