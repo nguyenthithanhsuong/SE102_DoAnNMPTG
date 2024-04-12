@@ -8,7 +8,7 @@ extern CCamera* Camera;
 
 class CSprite
 {
-	int id;	
+	int id;
 	int left;
 	int top;
 	int right;
@@ -21,7 +21,7 @@ class CSprite
 public:
 	CSprite(int id, int left, int top, int right, int bottom, LPTEXTURE tex);
 
-	void Draw(float x, float y, float z);
+	void Draw(float x, float y);
 };
 
 typedef CSprite* LPSPRITE;

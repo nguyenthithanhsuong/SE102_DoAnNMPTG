@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Land.cpp">
-      <Filter>Assets\Background</Filter>
+      <Filter>Game\Background</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Assets\Animation</Filter>
@@ -20,7 +20,7 @@
       <Filter>Assets\Texture</Filter>
     </ClCompile>
     <ClCompile Include="Tilemap.cpp">
-      <Filter>Assets\Tilemap</Filter>
+      <Filter>Game\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="debug.cpp">
       <Filter>Game\Debug supports</Filter>
@@ -35,10 +35,10 @@
       <Filter>Game\Game\Object</Filter>
     </ClCompile>
     <ClCompile Include="Loader.cpp">
-      <Filter>Assets\Load</Filter>
+      <Filter>Game\Game\Load</Filter>
     </ClCompile>
     <ClCompile Include="Bill.cpp">
-      <Filter>Game\Characters\Bill</Filter>
+      <Filter>Game\Characters\Playable\Bill</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Game\Game\Camera</Filter>
@@ -53,21 +53,24 @@
       <Filter>Game\Game\Object</Filter>
     </ClCompile>
     <ClCompile Include="Greeder.cpp">
-      <Filter>Game\Characters\Greeder</Filter>
+      <Filter>Game\Characters\NPC\Greeder</Filter>
     </ClCompile>
     <ClCompile Include="Lance.cpp">
-      <Filter>Game\Characters\Lance</Filter>
+      <Filter>Game\Characters\Playable\Lance</Filter>
     </ClCompile>
     <ClCompile Include="Title.cpp">
       <Filter>Game\Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Game\Collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bill.h">
-      <Filter>Game\Characters\Bill</Filter>
+      <Filter>Game\Characters\Playable\Bill</Filter>
     </ClInclude>
     <ClInclude Include="Land.h">
-      <Filter>Assets\Background</Filter>
+      <Filter>Game\Background</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Assets\Animation</Filter>
@@ -91,7 +94,7 @@
       <Filter>Assets\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Tilemap.h">
-      <Filter>Assets\Tilemap</Filter>
+      <Filter>Game\Tilemap</Filter>
     </ClInclude>
     <ClInclude Include="debug.h">
       <Filter>Game\Debug supports</Filter>
@@ -112,7 +115,7 @@
       <Filter>Game\Game\Object</Filter>
     </ClInclude>
     <ClInclude Include="Loader.h">
-      <Filter>Assets\Load</Filter>
+      <Filter>Game\Game\Load</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Game\Game\Camera</Filter>
@@ -124,13 +127,16 @@
       <Filter>Game\Game\Object</Filter>
     </ClInclude>
     <ClInclude Include="Greeder.h">
-      <Filter>Game\Characters\Greeder</Filter>
+      <Filter>Game\Characters\NPC\Greeder</Filter>
     </ClInclude>
     <ClInclude Include="Lance.h">
-      <Filter>Game\Characters\Lance</Filter>
+      <Filter>Game\Characters\Playable\Lance</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
       <Filter>Game\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Game\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +149,6 @@
     <Filter Include="Assets\Texture">
       <UniqueIdentifier>{5dd173eb-a207-487e-833b-5381783b5c3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets\Tilemap">
-      <UniqueIdentifier>{16a50317-ec24-406a-8754-2df29c51a600}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Assets\Sprite">
       <UniqueIdentifier>{472718d2-b83d-47c6-b757-ba624c54ad3c}</UniqueIdentifier>
     </Filter>
@@ -154,12 +157,6 @@
     </Filter>
     <Filter Include="Game\Characters">
       <UniqueIdentifier>{712b7939-67ad-4c6c-a4c3-328a80baec02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Characters\Bill">
-      <UniqueIdentifier>{4a7e9418-02e0-4c71-bf9d-b79e1800157d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets\Background">
-      <UniqueIdentifier>{69be85db-3baa-4ef2-8729-61b2ca8127c0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Debug supports">
       <UniqueIdentifier>{3b9cf75a-0999-4523-84a9-5717148dc5a5}</UniqueIdentifier>
@@ -179,33 +176,51 @@
     <Filter Include="Game\Game\Object">
       <UniqueIdentifier>{fb8ab8b0-75dc-4b31-8381-dceb3aa28d6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets\Load">
-      <UniqueIdentifier>{ce6c2f1a-1f76-45ee-8894-d7378fcbf7d6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Game\Camera">
       <UniqueIdentifier>{726cc6e6-7c45-44ee-a178-3333d9fd486a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Game\Tree">
       <UniqueIdentifier>{b7fb0613-d286-4e9a-b7a5-da647d8ca707}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Characters\Greeder">
-      <UniqueIdentifier>{df04e456-889d-4179-a54d-09423faa3272}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Characters\Lance">
-      <UniqueIdentifier>{0f5bc4fe-c6da-4c75-89f4-f151614a6c16}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Game\Scene">
       <UniqueIdentifier>{4153b875-1eb7-4099-b43d-3d60feb0ce9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Background">
+      <UniqueIdentifier>{69be85db-3baa-4ef2-8729-61b2ca8127c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Tilemap">
+      <UniqueIdentifier>{16a50317-ec24-406a-8754-2df29c51a600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Collision">
+      <UniqueIdentifier>{b940be3b-947e-4913-8a07-dcc25f1a4b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Game\Load">
+      <UniqueIdentifier>{ce6c2f1a-1f76-45ee-8894-d7378fcbf7d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\Playable">
+      <UniqueIdentifier>{2c41fe19-e2c2-4087-a1b2-c9ffc482cfdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\Playable\Lance">
+      <UniqueIdentifier>{0f5bc4fe-c6da-4c75-89f4-f151614a6c16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\Playable\Bill">
+      <UniqueIdentifier>{4a7e9418-02e0-4c71-bf9d-b79e1800157d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\NPC">
+      <UniqueIdentifier>{826a54e5-fdda-4c94-8691-183806b9876f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\NPC\Greeder">
+      <UniqueIdentifier>{df04e456-889d-4179-a54d-09423faa3272}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Tilemap.txt">
-      <Filter>Assets\Tilemap</Filter>
+      <Filter>Game\Tilemap</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
-      <Filter>Assets\Background</Filter>
+      <Filter>Game\Background</Filter>
     </None>
   </ItemGroup>
 </Project>

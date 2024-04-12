@@ -1,6 +1,5 @@
 #include "Lance.h"
 
-
 void CLance::Render()
 {
     CAnimations* animations = CAnimations::GetInstance();
@@ -64,7 +63,113 @@ void CLance::Render()
         }
 
 
-    animations->Get(aniId)->Render(x, y, z);
+    animations->Get(aniId)->Render(x, y);
+}
+
+void CLance::Update(DWORD dt)
+{ //cap nhat: kiem tra dieu kien truoc khi doi x y    
+    DebugOut(L"Lance Updated\n");
+    vy -= GAME_GRAVITY * dt;
+
+    if (left && !right)
+    {
+        nx = -1;
+    }
+    else if (!left && right)
+    {
+        nx = 1;
+    }
+    if (GetState(LANCE_STATE_DIE))
+    {
+    }
+    if (GetState(LANCE_STATE_JUMP))
+    {
+        if (isOnPlatform)
+        {
+            vy = LANCE_JUMP_SPEED_Y;
+            isOnPlatform = false;
+        }
+    }
+    else if (GetState(LANCE_STATE_RELEASE_JUMP))
+    {
+        if (!isOnPlatform)
+        {
+
+        }
+        else
+            SetState(LANCE_STATE_IDLE);
+    }
+    if (GetState(LANCE_STATE_LOOK_UP) || GetState(LANCE_STATE_IDLE) || GetState(LANCE_STATE_SIT))
+    {
+        vx = 0;
+    }
+    else if ((GetState(LANCE_STATE_WALK) || GetState(LANCE_STATE_WALK_LOOK_DOWN) || GetState(LANCE_STATE_WALK_LOOK_UP)))
+    {
+        if (left && !right)
+        {
+            vx = -LANCE_WALK_SPEED;
+            nx = -1;
+        }
+        else if (!left && right)
+        {
+            vx = LANCE_WALK_SPEED;
+            nx = 1;
+        }
+    }
+    else if (GetState(LANCE_STATE_IDLE))
+    {
+        vx = 0;
+        vy = 0;
+    }
+    if (vx > 0 && x > LEVEL_LENGTH - LANCE_WIDTH) x = LEVEL_LENGTH - LANCE_WIDTH;
+    if (vx < 0 && x < 0 + LANCE_WIDTH) x = 0 + LANCE_WIDTH;
+
+    isOnPlatform = false;
+    CCollision::GetInstance()->Process(this, dt, Tree);
+}
+
+void CLance::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+{
+    top = y + LANCE_HEIGHT / 2;
+    bottom = y - LANCE_HEIGHT / 2;
+    left = x - LANCE_WIDTH / 2;
+    right = x + LANCE_WIDTH / 2;
+}
+
+void CLance::OnNoCollision(DWORD dt)
+{
+    if (isOnPlatform)
+    {
+        x += vx * dt;
+        y += vy * dt;
+    }
+    else
+    {
+        SetState(LANCE_STATE_RELEASE_JUMP);
+        x += vx * dt;
+        y += vy * dt;
+    }
+}
+
+void CLance::OnCollisionWith(LPCOLLISIONEVENT e)
+{
+    if (e->ny != 0 && e->obj->IsBlocking())
+    {
+        vy = 0;
+        if (e->ny < 0) isOnPlatform = true;
+    }
+    else
+        if (e->nx != 0 && e->obj->IsBlocking())
+        {
+            vx = 0;
+        }
+
+    if (dynamic_cast<CGreeder*>(e->obj))
+        OnCollisionWithGreeder(e);
+}
+
+void CLance::OnCollisionWithGreeder(LPCOLLISIONEVENT e)
+{
 }
 
 void CLance::SetState(int state)
@@ -81,7 +186,7 @@ void CLance::SetState(int keycode, int action)
         {
         case ON_KEY_DOWN:
 
-            if (GetState(LANCE_STATE_WALK) || GetState(LANCE_STATE_IDLE))
+            if (GetState(LANCE_STATE_WALK) || GetState(LANCE_STATE_IDLE) || GetState(LANCE_STATE_WALK_LOOK_DOWN) || GetState(LANCE_STATE_WALK_LOOK_UP))
             {
                 SetState(LANCE_STATE_JUMP);
             }
@@ -200,70 +305,3 @@ void CLance::SetState(int keycode, int action)
     CGameObject::SetState(state);
 }
 
-void CLance::Update(DWORD dt)
-{ //cap nhat: kiem tra dieu kien truoc khi doi x y
-    x += vx * dt;
-    y += vy * dt;
-    DebugOut(L"Lance: x = %f, y = %f\n", x, y);
-
-    if (GetState(LANCE_STATE_JUMP))
-    {
-        if (y == GROUND_Y)
-        {
-            vy = LANCE_JUMP_SPEED_Y;
-        }
-        vy -= LANCE_GRAVITY * dt;
-    }
-    else if (GetState(LANCE_STATE_RELEASE_JUMP))
-    {
-        vy -= LANCE_GRAVITY * dt;
-    }
-    else if (GetState(LANCE_STATE_LOOK_UP) || GetState(LANCE_STATE_IDLE) || GetState(LANCE_STATE_SIT))
-    {
-        vx = 0;
-        vy = 0;
-    }
-    else if ((GetState(LANCE_STATE_WALK) || GetState(LANCE_STATE_WALK_LOOK_DOWN) || GetState(LANCE_STATE_WALK_LOOK_UP)))
-    {
-        if (left && !right)
-        {
-            vx = -LANCE_WALK_SPEED;
-            nx = -1;
-        }
-        else if (!left && right)
-        {
-            vx = LANCE_WALK_SPEED;
-            nx = 1;
-        }
-    }
-    else if (GetState(LANCE_STATE_IDLE))
-    {
-        vx = 0;
-        vy = 0;
-    }
-
-    if (y < GROUND_Y)
-    {
-        vy = 0; y = GROUND_Y;
-        SetState(LANCE_STATE_IDLE);
-    }
-
-    if (vx > 0 && x > LEVEL_LENGTH - LANCE_WIDTH) x = LEVEL_LENGTH - LANCE_WIDTH;
-    if (vx < 0 && x < 0 + LANCE_WIDTH) x = 0 + LANCE_WIDTH;
-
-    float cx, cy;
-    GetPosition(cx, cy);
-    cx -= SCREEN_WIDTH / 2;
-    cy = 0;
-    if (cx < 0) cx = 0;
-    if (cx > LEVEL_LENGTH - SCREEN_WIDTH) cx = LEVEL_LENGTH - SCREEN_WIDTH;
-}
-
-
-void CLance::GetBoundingBox(float& left, float& top, float& right, float& bottom)
-{
-    left = x - LANCE_WIDTH / 2;
-    right = left + LANCE_WIDTH;
-    bottom = y - LANCE_HEIGHT / 2;
-    top = y + LANCE_HEIGHT;
-}

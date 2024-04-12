@@ -8,6 +8,8 @@ QNode::QNode()
 }
 QNode::QNode(int level, float a1, float b1, float a2, float b2)
 {
+	left = NULL;
+	right = NULL;
 	this->level = level;
 	leftx = a1; topy = b1;
 	rightx = a2; boty = b2;
@@ -31,6 +33,18 @@ bool QNode::IsContain(CGameObject* object)
 	float l, t, r, b;
 	object->GetBoundingBox(l, t, r, b);
 	if ((l >= leftx && r <= rightx) || (l <= leftx && r >= leftx))//object auto get placed on the left node
+		return true;
+	else
+		return false;
+}
+
+bool QNode::IsOnBoundary(CGameObject* object)
+{
+	if (object == nullptr)
+		return false;
+	float l, t, r, b;
+	object->GetBoundingBox(l, t, r, b);
+	if ((l <= leftx && r >= leftx) || (l <= rightx && r >= rightx))
 		return true;
 	else
 		return false;
@@ -106,7 +120,7 @@ void QNode::Get(CGameObject* object, QNode* node, QNode* Tree)
 
 int QNode::HighestLevel(QNode* node)
 {
-	if(node == nullptr)
+	if (node == nullptr)
 	{
 		return -1; // or any other suitable value indicating no nodes
 	}

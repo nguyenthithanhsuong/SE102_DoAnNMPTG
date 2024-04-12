@@ -21,6 +21,8 @@
 #include "Loader.h"
 #include "Camera.h"
 
+int ObjectIDSet = 0;
+
 CBill* bill = NULL;
 CLance* lance = NULL;
 CLand* land = NULL;
@@ -49,8 +51,6 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 void LoadResources()
 {
 	Loader load;
-	/*load.LoadSky();*/
-	/*load.LoadLand();*/
 	load.LoadMap();
 	load.LoadBill();
 	load.LoadGreeder();
@@ -58,32 +58,45 @@ void LoadResources()
 	load.LoadLance();
 }
 
-bool IsNodeVisible(QNode* node, float camX, float camY) 
+bool IsNodeVisible(QNode* node, float camX, float camY)
 {
-		float viewportLeft = camX;
-		float viewportBottom = camY;
-		float viewportRight = camX + SCREEN_WIDTH; // Correctly calculate right coordinate
-		float viewportTop = camY + SCREEN_HEIGHT; // Correctly calculate bottom coordinate
+	float viewportLeft = camX;
+	float viewportBottom = camY;
+	float viewportRight = camX + SCREEN_WIDTH; // Correctly calculate right coordinate
+	float viewportTop = camY + SCREEN_HEIGHT; // Correctly calculate bottom coordinate
 
-		return !((node->rightx < viewportLeft - MAP_TILE_WIDTH) ||
-			(node->leftx > viewportRight + MAP_TILE_WIDTH));
+	return !((node->rightx < viewportLeft - MAP_TILE_WIDTH) ||
+		(node->leftx > viewportRight + MAP_TILE_WIDTH));
 }
 
+
 void RenderNode(QNode* node, float camX, float camY) {
-	if (node->level == Tree->HighestLevel(Tree))
+
+	if (node != NULL)
 	{
-		if (IsNodeVisible(node, camX, camY))
+		if (node->left == NULL && node->right == NULL)
 		{
-			for (auto& obj : node->objects) {
-				obj->Render();
+			for (auto& obj : node->objects)
+			{
+				if (IsNodeVisible(node, camX, camY) && !obj->IsDynamic)
+					obj->Render();
 			}
+		}
+		else
+		{
+			if (node->left != NULL)
+				RenderNode(node->left, camX, camY);
+			if (node->right != NULL)
+				RenderNode(node->right, camX, camY);
+		}
+		for (auto& obj : node->objects)
+		{
+			if (obj->IsDynamic)
+				obj->Render();
 		}
 	}
 	else
-	{
-		RenderNode(node->left, camX, camY);
-		RenderNode(node->right, camX, camY);
-	}
+		return;
 }
 
 void Render()
@@ -111,8 +124,9 @@ void Render()
 		title->Render();
 		break;
 	case 1:
-		if (title->confirm == 2)
+		if (title->confirm == 2&&!title->LANCE_ADDED)
 		{
+			title->LANCE_ADDED = true;
 			Tree->Insert(lance);
 			title->confirm = 1;
 		}
@@ -127,42 +141,51 @@ void Render()
 
 void UpdateNodes(DWORD dt, QNode* node, float camX, float camY)
 {
-	float x=0, y=0;
-	if (node->level == Tree->HighestLevel(Tree))
+	float x = 0, y = 0;
+	if (node != NULL)
 	{
-		if (true/*IsNodeVisible(node, camX, camY)*/)
+		if (node->level == Tree->HighestLevel(Tree))
 		{
-			for (auto& obj : node->objects) {
-				obj->Update(dt);
-				if (obj == bill)
-				{
-					bill->GetPosition(x, y);
-					Camera->Update(x, y);
+			if (true/*IsNodeVisible(node, camX, camY)*/)
+			{
+				for (auto& obj : node->objects) {
+					obj->Update(dt);
+					if (obj == bill)
+					{
+						bill->GetPosition(x, y);
+						Camera->Update(x, y);
+					}
+					node->Get(obj, node, Tree);
+					if (node->IsOnBoundary(obj) && obj->IsDynamic)
+					{
+						obj->Render();
+					}
 				}
-				node->Get(obj, node, Tree);
 			}
+		}
+		else
+		{
+			UpdateNodes(dt, node->left, camX, camY);
+			UpdateNodes(dt, node->right, camX, camY);
 		}
 	}
 	else
-	{
-		UpdateNodes(dt, node->left, camX, camY);
-		UpdateNodes(dt, node->right, camX, camY);
-	}
+		return;
 }
 void Update(DWORD dt)
 {
 	float x, y;
 	Camera->GetCamPos(x, y);
 
-	switch (title->scene)
-	{
-	case 0:
-		title->Update(dt);
-		break;
-	case 1:
-		UpdateNodes(dt, Tree, x, y);
-		break;
-	}
+		switch (title->scene)
+		{
+		case 0:
+			title->Update(dt);
+			break;
+		case 1:
+			UpdateNodes(dt, Tree, x, y);
+			break;
+		}
 	Render();
 }
 

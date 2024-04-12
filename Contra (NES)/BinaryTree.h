@@ -1,6 +1,7 @@
 #pragma once
-#include "GameObject.h"
+
 #include "ID.h"
+#include "GameObject.h"
 #include "Deleted.h"
 
 class QNode
@@ -14,6 +15,7 @@ public:
 	QNode(int level, float a1, float b1, float a2, float b2);
 	void Clear(QNode* node);
 	bool IsContain(CGameObject* object);
+	bool IsOnBoundary(CGameObject* object);
 	void Split();
 	void Insert(CGameObject* object);
 	void Get(CGameObject* object, QNode* node, QNode* Tree);

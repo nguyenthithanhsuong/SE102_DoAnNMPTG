@@ -132,6 +132,7 @@
     <ClCompile Include="Bill.cpp" />
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Deleted.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Greeder.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Animations.h" />
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Deleted.h" />
     <ClInclude Include="Greeder.h" />
     <ClInclude Include="Lance.h" />

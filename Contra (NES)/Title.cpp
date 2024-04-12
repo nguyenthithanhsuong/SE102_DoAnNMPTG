@@ -6,24 +6,24 @@ void CTitle::Render()
 	if (status == false)
 	{
 		ani = CAnimations::GetInstance()->Get(ID_ANI_TITLE_RUN_RIGHT);
-		ani->Render(x, y, z);
+		ani->Render(x, y);
 	}
 	else
 	{
 		ani = CAnimations::GetInstance()->Get(ID_ANI_TITLE_RUN_RIGHT);
-		ani->Render(x, y, z);
+		ani->Render(x, y);
 		ani = CAnimations::GetInstance()->Get(ID_MENU1);
-		ani->Render(MENU1_START_X, MENU1_START_Y, z);
+		ani->Render(MENU1_START_X, MENU1_START_Y);
 		ani = CAnimations::GetInstance()->Get(ID_MENU2);
-		ani->Render(MENU2_START_X, MENU2_START_Y, z);
+		ani->Render(MENU2_START_X, MENU2_START_Y);
 		ani = CAnimations::GetInstance()->Get(ID_BADGE);
 		if (choice == 1)
 		{
-			ani->Render(BADGE_START_X, BADGE_START_Y, z);
+			ani->Render(BADGE_START_X, BADGE_START_Y);
 		}
 		else
 		{
-			ani->Render(BADGE_SECOND_X, BADGE_SECOND_Y, z);
+			ani->Render(BADGE_SECOND_X, BADGE_SECOND_Y);
 		}
 	}
 }

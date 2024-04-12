@@ -63,7 +63,114 @@ void CBill::Render()
         }
 
 
-    animations->Get(aniId)->Render(x, y, z);
+    animations->Get(aniId)->Render(x, y);
+}
+
+void CBill::Update(DWORD dt)
+{ //cap nhat: kiem tra dieu kien truoc khi doi x y    
+
+    DebugOut(L"Bill Updated\n");
+    vy -= GAME_GRAVITY * dt;
+
+    if (left && !right)
+    {
+        nx = -1;
+    }
+    else if (!left && right)
+    {
+        nx = 1;
+    }
+    if (GetState(BILL_STATE_DIE))
+    {
+    }
+    if (GetState(BILL_STATE_JUMP))
+    {
+        if (isOnPlatform)
+        {
+            vy = BILL_JUMP_SPEED_Y;
+            isOnPlatform = false;
+        }
+    }
+    else if (GetState(BILL_STATE_RELEASE_JUMP))
+    {
+        if (!isOnPlatform)
+        {
+
+        }
+        else
+            SetState(BILL_STATE_IDLE);
+    }
+    if (GetState(BILL_STATE_LOOK_UP) || GetState(BILL_STATE_IDLE) || GetState(BILL_STATE_SIT))
+    {
+        vx = 0;
+    }
+    else if ((GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_DOWN) || GetState(BILL_STATE_WALK_LOOK_UP)))
+    {
+        if (left && !right)
+        {
+            vx = -BILL_WALK_SPEED;
+            nx = -1;
+        }
+        else if (!left && right)
+        {
+            vx = BILL_WALK_SPEED;
+            nx = 1;
+        }
+    }
+    else if (GetState(BILL_STATE_IDLE))
+    {
+        vx = 0;
+        vy = 0;
+    }
+    if (vx > 0 && x > LEVEL_LENGTH - BILL_WIDTH) x = LEVEL_LENGTH - BILL_WIDTH;
+    if (vx < 0 && x < 0 + BILL_WIDTH) x = 0 + BILL_WIDTH;
+
+    isOnPlatform = false;
+    CCollision::GetInstance()->Process(this, dt, Tree);
+}
+
+void CBill::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+{
+    top = y + BILL_HEIGHT / 2;
+    bottom = y - BILL_HEIGHT / 2;
+    left = x - BILL_WIDTH / 2;
+    right = x + BILL_WIDTH / 2;
+}
+
+void CBill::OnNoCollision(DWORD dt)
+{
+    if (isOnPlatform)
+    {
+        x += vx * dt;
+        y += vy * dt;
+    }
+    else
+    {
+        SetState(BILL_STATE_RELEASE_JUMP);
+        x += vx * dt;
+        y += vy * dt;
+    }
+}
+
+void CBill::OnCollisionWith(LPCOLLISIONEVENT e)
+{
+    if (e->ny != 0 && e->obj->IsBlocking())
+    {
+        vy = 0;
+        if (e->ny < 0) isOnPlatform = true;
+    }
+    else
+        if (e->nx != 0 && e->obj->IsBlocking())
+        {
+            vx = 0;
+        }
+
+    if (dynamic_cast<CGreeder*>(e->obj))
+        OnCollisionWithGreeder(e);
+}
+
+void CBill::OnCollisionWithGreeder(LPCOLLISIONEVENT e)
+{
 }
 
 void CBill::SetState(int state)
@@ -121,7 +228,7 @@ void CBill::SetState(int keycode, int action)
         case KEY_STATE:
             if (!GetState(BILL_STATE_SIT) && !GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
             {
-                if (GetState(BILL_STATE_WALK)||GetState(BILL_STATE_WALK_LOOK_UP))
+                if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_UP))
                     SetState(BILL_STATE_WALK_LOOK_UP);
                 else
                     SetState(BILL_STATE_LOOK_UP);
@@ -136,7 +243,7 @@ void CBill::SetState(int keycode, int action)
         case ON_KEY_DOWN:
             if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
             {
-                if (GetState(BILL_STATE_WALK)|| GetState(BILL_STATE_WALK_LOOK_UP) ||GetState(BILL_STATE_WALK_LOOK_DOWN))
+                if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_UP) || GetState(BILL_STATE_WALK_LOOK_DOWN))
                     SetState(BILL_STATE_WALK_LOOK_DOWN);
                 else
                     SetState(BILL_STATE_SIT);
@@ -151,7 +258,7 @@ void CBill::SetState(int keycode, int action)
         case KEY_STATE:
             if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
             {
-                if (GetState(BILL_STATE_WALK)|| GetState(BILL_STATE_WALK_LOOK_UP) || GetState(BILL_STATE_WALK_LOOK_DOWN))
+                if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_UP) || GetState(BILL_STATE_WALK_LOOK_DOWN))
                     SetState(BILL_STATE_WALK_LOOK_DOWN);
                 else
                     SetState(BILL_STATE_SIT);
@@ -194,73 +301,8 @@ void CBill::SetState(int keycode, int action)
             break;
         }
         break;
-
-    case DIK_X:
-        // Beta
-        break;
     }
+
 
     CGameObject::SetState(state);
-}
-
-void CBill::Update(DWORD dt)
-{ //cap nhat: kiem tra dieu kien truoc khi doi x y
-    x += vx * dt;
-    y += vy * dt;
-    DebugOut(L"x = %f, y = %f\n", x, y);
-
-    if (GetState(BILL_STATE_JUMP))
-    {
-        if (y == GROUND_Y)
-        {
-            vy = BILL_JUMP_SPEED_Y;
-        }
-        vy -= BILL_GRAVITY * dt;
-    }
-    else if (GetState(BILL_STATE_RELEASE_JUMP))
-    {
-        vy -= BILL_GRAVITY * dt;
-    }
-    else if (GetState(BILL_STATE_LOOK_UP) || GetState(BILL_STATE_IDLE) || GetState(BILL_STATE_SIT))
-    {
-        vx = 0;
-        vy = 0;
-    }
-    else if ((GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_DOWN) || GetState(BILL_STATE_WALK_LOOK_UP)))
-    {
-        if (left && !right)
-        {
-            vx = -BILL_WALK_SPEED;
-            nx = -1;
-        }
-        else if (!left && right)
-        {
-            vx = BILL_WALK_SPEED;
-            nx = 1;
-        }
-    }
-    else if (GetState(BILL_STATE_IDLE))
-    {
-        vx = 0;
-        vy = 0;
-    }
-
-    if (y < GROUND_Y)
-    {
-        vy = 0; y = GROUND_Y;
-        SetState(BILL_STATE_IDLE);
-    }
-
-    if (vx > 0 && x > LEVEL_LENGTH - BILL_WIDTH) x = LEVEL_LENGTH - BILL_WIDTH;
-    if (vx < 0 && x < 0 + BILL_WIDTH) x = 0 + BILL_WIDTH;
-
-}
-
-
-void CBill::GetBoundingBox(float& left, float& top, float& right, float& bottom)
-{
-    left = x - BILL_WIDTH / 2;
-    right = left + BILL_WIDTH;
-    bottom = y - BILL_HEIGHT / 2;
-    top = y + BILL_HEIGHT;
 }

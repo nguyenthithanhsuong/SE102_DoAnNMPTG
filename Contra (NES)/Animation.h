@@ -5,7 +5,7 @@
 
 #include "Sprites.h"
 #include "AnimationFrame.h"
-#include "debug.h"
+
 
 using namespace std;
 
@@ -18,7 +18,7 @@ class CAnimation
 public:
 	CAnimation(int defaultTime) { this->defaultTime = defaultTime; lastFrameTime = -1; currentFrame = -1; } //create
 	void Add(int spriteId, DWORD time = 0); //add a frame to animation
-	void Render(float x, float y, float z); //Draw to screen
+	void Render(float x, float y); //Draw to screen
 };
 
 typedef CAnimation* LPANIMATION;

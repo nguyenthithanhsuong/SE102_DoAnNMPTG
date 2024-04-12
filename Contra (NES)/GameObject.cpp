@@ -5,6 +5,8 @@
 
 CGameObject::CGameObject()
 {
+	ObjectID = ObjectIDSet;
+	ObjectIDSet++;
 	x = y = 0;
 	vx = vy = 0;
 	nx = 1;

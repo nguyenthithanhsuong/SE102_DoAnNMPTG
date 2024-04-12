@@ -192,56 +192,56 @@ void CGame::Init(HWND hWnd, HINSTANCE hInstance)
 
 void CGame::Draw(float x, float y, LPTEXTURE tex, RECT* rect, float alpha)
 {
-	if (tex == NULL) return;
+	//if (tex == NULL) return;
 
-	int spriteWidth = 0;
-	int spriteHeight = 0;
+	//int spriteWidth = 0;
+	//int spriteHeight = 0;
 
-	D3DX10_SPRITE sprite;
+	//D3DX10_SPRITE sprite;
 
-	sprite.pTexture = tex->getShaderResourceView();
+	//sprite.pTexture = tex->getShaderResourceView();
 
-	if (rect == NULL)
-	{
-		sprite.TexCoord.x = 0;
-		sprite.TexCoord.y = 0;
+	//if (rect == NULL)
+	//{
+	//	sprite.TexCoord.x = 0;
+	//	sprite.TexCoord.y = 0;
 
-		sprite.TexSize.x = 1.0f;
-		sprite.TexSize.y = 1.0f;
+	//	sprite.TexSize.x = 1.0f;
+	//	sprite.TexSize.y = 1.0f;
 
-		spriteWidth = tex->getWidth();
-		spriteHeight = tex->getHeight();
-	}
-	else
-	{
-		sprite.TexCoord.x = rect->left / (float)tex->getWidth();
-		sprite.TexCoord.y = rect->top / (float)tex->getHeight();
+	//	spriteWidth = tex->getWidth();
+	//	spriteHeight = tex->getHeight();
+	//}
+	//else
+	//{
+	//	sprite.TexCoord.x = rect->left / (float)tex->getWidth();
+	//	sprite.TexCoord.y = rect->top / (float)tex->getHeight();
 
-		spriteWidth = (rect->right - rect->left + 1);
-		spriteHeight = (rect->bottom - rect->top + 1);
+	//	spriteWidth = (rect->right - rect->left + 1);
+	//	spriteHeight = (rect->bottom - rect->top + 1);
 
-		sprite.TexSize.x = spriteWidth / (float)tex->getWidth();
-		sprite.TexSize.y = spriteHeight / (float)tex->getHeight();
-	}
+	//	sprite.TexSize.x = spriteWidth / (float)tex->getWidth();
+	//	sprite.TexSize.y = spriteHeight / (float)tex->getHeight();
+	//}
 
-	sprite.TextureIndex = 0;
+	//sprite.TextureIndex = 0;
 
-	sprite.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, alpha);
+	//sprite.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, alpha);
 
-	D3DXMATRIX matTranslation;
-	D3DXMatrixTranslation(&matTranslation, sprite.TexCoord.x, sprite.TexCoord.y, 0.1f);
+	//D3DXMATRIX matTranslation;
+	//D3DXMatrixTranslation(&matTranslation, sprite.TexCoord.x, sprite.TexCoord.y, 0.1f);
 
-	// Scale the sprite to its correct width and height
-	D3DXMATRIX matScaling;
-	D3DXMatrixScaling(&matScaling, sprite.TexSize.x, sprite.TexSize.y, 1.0f);
+	//// Scale the sprite to its correct width and height
+	//D3DXMATRIX matScaling;
+	//D3DXMatrixScaling(&matScaling, sprite.TexSize.x, sprite.TexSize.y, 1.0f);
 
-	// Combine translation and scaling matrices
-	D3DXMATRIX matWorld = matScaling * matTranslation;
+	//// Combine translation and scaling matrices
+	//D3DXMATRIX matWorld = matScaling * matTranslation;
 
-	// Set the sprite's position and size
-	sprite.matWorld = matWorld;
+	//// Set the sprite's position and size
+	//sprite.matWorld = matWorld;
 
-	spriteObject->DrawSpritesImmediate(&sprite, 1, 0, 0);
+	//spriteObject->DrawSpritesImmediate(&sprite, 1, 0, 0);
 }
 
 LPTEXTURE CGame::LoadTexture(LPCWSTR texturePath)
@@ -394,7 +394,8 @@ void CGame::ProcessKeyboard()
 		}
 	}
 
-	keyHandler->KeyState((BYTE*)&keyStates);
+	if (keyStates != NULL && keyHandler != NULL)
+		keyHandler->KeyState((BYTE*)&keyStates);
 
 	DWORD dwElements = KEYBOARD_BUFFER_SIZE;
 	hr = didv->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), keyEvents, &dwElements, 0);

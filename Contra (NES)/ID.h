@@ -5,11 +5,12 @@
 #define WINDOW_ICON_PATH L"icon.ico"
 
 
-#define BACKGROUND_COLOR D3DXCOLOR(0.0f/255, 0.0f/255, 0.0f/255, 255.0f/255)
+#define BACKGROUND_COLOR D3DXCOLOR(0.0f/255, 0.0f/255, 0.0f/255, 0.0f)
 
 #define SCREEN_WIDTH 408
 #define SCREEN_HEIGHT 272
-#define LEVEL_LENGTH 3320
+#define LEVEL_LENGTH 3328
+#define Y_DROPPED -100
 
 #define ID_TEX_BILL 0
 #define ID_TEX_LANCE 2
@@ -17,7 +18,7 @@
 #define ID_TEX_GREEDER 20
 #define ID_TEX_MAP_STAGE_1 30
 #define ID_TEX_TITLE 40
- 
+
 //toa do O doi xuong duoi ben trai - the gioi thuc, ko su dung ground_y khi co collision
 //chi xai O tren trai cho ham ve/draw - the gioi ao
 #define GROUND_Y 140.0f
@@ -36,6 +37,10 @@
 #define ON_KEY_DOWN 2
 #define KEY_STATE 3
 
+#define BILL_DEPTH 20
+#define NPC_DEPTH 15
+#define BG_DEPTH 10
+
 //LAND AND SKY STUFF
 
 #define ID_ANI_LAND_0 2000
@@ -51,21 +56,23 @@
 
  //BILL STUFF
 
-#define BILL_WIDTH 22.0f
-#define BILL_HEIGHT 40.0f
+#define BILL_WIDTH 15.0f
+#define BILL_HEIGHT 20.0f
 
-#define BILL_START_X 30.0f
+#define BILL_START_X 100.0f
 #define BILL_START_Y GROUND_Y + 50.0f
 
 #define BILL_WALK_SPEED		0.1f
 
-#define BILL_JUMP_SPEED_Y		0.45f
+#define BILL_JUMP_SPEED_Y		0.5f
 
-#define BILL_GRAVITY			0.0018f
+#define GAME_GRAVITY			0.002f
 
 
 
 #define BILL_STATE_IDLE			000
+
+#define BILL_STATE_DIE 050
 
 #define BILL_STATE_WALK	100
 
@@ -106,23 +113,19 @@
 
 //LANCE STUFF
 
-#define LANCE_WIDTH 40.0f
-#define LANCE_HEIGHT 40.0f
+#define LANCE_WIDTH 15.0f
+#define LANCE_HEIGHT 20.0f
 
-#define LANCE_START_X 30.0f
+#define LANCE_START_X 50.0f
 #define LANCE_START_Y GROUND_Y + 50.0f
 
-#define LANCE_WALK_SPEED		0.05f
-#define LANCE_RUNNING_SPEED		0.1f
+#define LANCE_WALK_SPEED		BILL_WALK_SPEED
 
-#define LANCE_JUMP_SPEED_Y		0.45f
-
-#define LANCE_GRAVITY			0.0018f
-
+#define LANCE_JUMP_SPEED_Y		BILL_JUMP_SPEED_Y
 
 
 #define LANCE_STATE_IDLE			000
-
+#define LANCE_STATE_DIE 050
 #define LANCE_STATE_WALK	100
 
 #define LANCE_STATE_WALK_LOOK_UP	110
@@ -136,8 +139,6 @@
 #define LANCE_STATE_SIT			150
 
 #define LANCE_STATE_LOOK_UP		160
-
-
 
 #define ID_ANI_LANCE_IDLE_RIGHT 4000
 #define ID_ANI_LANCE_IDLE_LEFT 4001
@@ -161,20 +162,20 @@
 #define ID_ANI_LANCE_LOOK_UP_LEFT 5601
 
 
-// GREEDER STUFF
+ // GREEDER STUFF
 
-#define GREEDER_WIDTH 22.0f
-#define GREEDER_HEIGHT 40.0f
+#define GREEDER_WIDTH 15.0f
+#define GREEDER_HEIGHT 20.0f
 
-#define GREEDER_START_X 50.0f
-#define GREEDER_START_Y GROUND_Y
+#define GREEDER_START_X 100.0f
+#define GREEDER_START_Y GROUND_Y + 200.0f
 
 #define ID_ANI_GREEDER_RUN_LEFT 20010
 #define ID_ANI_GREEDER_RUN_RIGHT 20020
 
-#define GREEDER_RUNNING_SPEED		0.15f
-
-//TITLE STUFF
+#define GREEDER_RUNNING_SPEED		0.101f
+ 
+ //TITLE STUFF
 
 #define TITLE_WIDTH 194.0f
 #define TITLE_HEIGHT 207.0f

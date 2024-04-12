@@ -16,6 +16,7 @@ class CTitle : public CGameObject
 	bool status = false;
 	int choice = 1;
 public:
+	bool LANCE_ADDED = false;
 	int scene = 0;
 	int confirm;
 	CTitle(float x, float y, float vx) : CGameObject(x, y)
