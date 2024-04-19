@@ -1,16 +1,18 @@
 #pragma once
 
+#include "MapRead.h"
+
+extern Stage* stage1;
+
 #define WINDOW_CLASS_NAME L"SampleWindow"
 #define MAIN_WINDOW_TITLE L"Contra (NES) testing"
 #define WINDOW_ICON_PATH L"icon.ico"
 
-
 #define BACKGROUND_COLOR D3DXCOLOR(0.0f/255, 0.0f/255, 0.0f/255, 0.0f)
 
-#define SCREEN_WIDTH 408
-#define SCREEN_HEIGHT 272
-#define LEVEL_LENGTH 3328
-#define Y_DROPPED -100
+#define SCREEN_WIDTH stage1->ScreenWidth
+#define SCREEN_HEIGHT stage1->ScreenHeight
+#define LEVEL_LENGTH stage1->LevelLength
 
 #define ID_TEX_BILL 0
 #define ID_TEX_LANCE 2
@@ -18,10 +20,6 @@
 #define ID_TEX_GREEDER 20
 #define ID_TEX_MAP_STAGE_1 30
 #define ID_TEX_TITLE 40
-
-//toa do O doi xuong duoi ben trai - the gioi thuc, ko su dung ground_y khi co collision
-//chi xai O tren trai cho ham ve/draw - the gioi ao
-#define GROUND_Y 140.0f
 
 #define TEXTURES_DIR L"textures"
 #define TEXTURE_PATH_BILL TEXTURES_DIR "\\BillSprites.png"
@@ -36,10 +34,6 @@
 #define ON_KEY_UP 1
 #define ON_KEY_DOWN 2
 #define KEY_STATE 3
-
-#define BILL_DEPTH 20
-#define NPC_DEPTH 15
-#define BG_DEPTH 10
 
 //LAND AND SKY STUFF
 
@@ -56,39 +50,25 @@
 
  //BILL STUFF
 
+#define BILL_START_X stage1->Billx
+#define BILL_START_Y stage1->Billy
 #define BILL_WIDTH 15.0f
 #define BILL_HEIGHT 20.0f
-
-#define BILL_START_X 100.0f
-#define BILL_START_Y GROUND_Y + 50.0f
-
 #define BILL_WALK_SPEED		0.1f
-
 #define BILL_JUMP_SPEED_Y		0.5f
-
 #define GAME_GRAVITY			0.002f
-
-
-
 #define BILL_STATE_IDLE			000
-
-#define BILL_STATE_DIE 050
-
+#define BILL_STATE_DIE 010
 #define BILL_STATE_WALK	100
-
 #define BILL_STATE_WALK_LOOK_UP	110
-
 #define BILL_STATE_WALK_LOOK_DOWN 120
-
 #define BILL_STATE_JUMP			130
-
 #define BILL_STATE_RELEASE_JUMP    140
-
 #define BILL_STATE_SIT			150
-
 #define BILL_STATE_LOOK_UP		160
-
-
+#define BILL_STATE_SWIM_IDLE 200
+#define BILL_STATE_SWIM_WALK 300
+#define BILL_STATE_SWIM_SIT 350
 
 #define ID_ANI_BILL_IDLE_RIGHT 0000
 #define ID_ANI_BILL_IDLE_LEFT 0001
@@ -111,34 +91,14 @@
 #define ID_ANI_BILL_LOOK_UP_RIGHT 1600
 #define ID_ANI_BILL_LOOK_UP_LEFT 1601
 
+#define ID_ANI_BILL_SWIM_RIGHT 1700
+#define ID_ANI_BILL_SWIM_LEFT 1701
+#define ID_ANI_BILL_SWIM_UNDER 1702
+
 //LANCE STUFF
 
-#define LANCE_WIDTH 15.0f
-#define LANCE_HEIGHT 20.0f
-
-#define LANCE_START_X 50.0f
-#define LANCE_START_Y GROUND_Y + 50.0f
-
-#define LANCE_WALK_SPEED		BILL_WALK_SPEED
-
-#define LANCE_JUMP_SPEED_Y		BILL_JUMP_SPEED_Y
-
-
-#define LANCE_STATE_IDLE			000
-#define LANCE_STATE_DIE 050
-#define LANCE_STATE_WALK	100
-
-#define LANCE_STATE_WALK_LOOK_UP	110
-
-#define LANCE_STATE_WALK_LOOK_DOWN 120
-
-#define LANCE_STATE_JUMP			130
-
-#define LANCE_STATE_RELEASE_JUMP    140
-
-#define LANCE_STATE_SIT			150
-
-#define LANCE_STATE_LOOK_UP		160
+#define LANCE_START_X stage1->Lancex
+#define LANCE_START_Y stage1->Lancey
 
 #define ID_ANI_LANCE_IDLE_RIGHT 4000
 #define ID_ANI_LANCE_IDLE_LEFT 4001
@@ -168,7 +128,7 @@
 #define GREEDER_HEIGHT 20.0f
 
 #define GREEDER_START_X 100.0f
-#define GREEDER_START_Y GROUND_Y + 200.0f
+#define GREEDER_START_Y 200.0f
 
 #define ID_ANI_GREEDER_RUN_LEFT 20010
 #define ID_ANI_GREEDER_RUN_RIGHT 20020
@@ -181,7 +141,7 @@
 #define TITLE_HEIGHT 207.0f
 
 #define TITLE_START_X SCREEN_WIDTH
-#define TITLE_START_Y GROUND_Y - 20.0f
+#define TITLE_START_Y 120.0f
 
 #define ID_ANI_TITLE_RUN_RIGHT 40040
 

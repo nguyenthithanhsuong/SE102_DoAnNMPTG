@@ -1,6 +1,9 @@
 #pragma once
 #include <windows.h>
 
+#include "MapRead.h"
+
+extern Stage* stage1;
 #include "debug.h"
 #include "Game.h"
 #include "GameObject.h"
@@ -12,7 +15,6 @@
 #include "Sprites.h"
 
 #include "Bill.h"
-#include "Lance.h"
 #include "Greeder.h"
 #include "Land.h"
 #include "Title.h"
@@ -23,7 +25,7 @@
 #include "BinaryTree.h"
 
 extern CBill* bill;
-extern CLance* lance;
+extern CBill* lance;
 extern CLand* land;
 extern CGame* game;
 extern CGreeder* greeder;
@@ -37,9 +39,8 @@ class Loader
 public:
 	void LoadBill();
 	void LoadLance();
-	void LoadLand();
-	void LoadSky();
 	void LoadGreeder();
 	void LoadMap();
 	void LoadTitle();
+	void LoadStage1();
 };

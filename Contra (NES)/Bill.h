@@ -27,7 +27,9 @@ public:
 	ULONGLONG untouchable_start;
 	BOOLEAN isOnPlatform;
 	bool Collision = false;
-	CBill(float x, float y) : CGameObject(x, y)
+	bool isBill = true;
+	bool isSwimming = false;
+	CBill(float x, float y, bool isBill) : CGameObject(x, y)
 	{
 		IsDynamic = true;
 		state = BILL_STATE_RELEASE_JUMP;
@@ -37,6 +39,7 @@ public:
 
 		untouchable = 0;
 		untouchable_start = -1;
+		this->isBill = isBill;
 	}
 	void Update(DWORD dt); //update frames
 	void Render(); //draw to screen
@@ -52,13 +55,17 @@ public:
 	int GetState() { return state; }
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom); //get 'box'
 
+	void LeftKey(int action);
+	void RightKey(int action);
+	void UpKey(int action);
+	void DownKey(int action);
+	void JumpKey(int action);
 	//Collision:
 	virtual int IsCollidable() { return 1; };
 	int IsBlocking()
 	{
 		return 0;
 	}
-
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);

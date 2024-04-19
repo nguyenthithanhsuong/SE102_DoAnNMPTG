@@ -67,6 +67,4 @@ void CGreeder::OnCollisionWith(LPCOLLISIONEVENT e)
 		{
 			vx = -vx;
 		}
-
-
 }

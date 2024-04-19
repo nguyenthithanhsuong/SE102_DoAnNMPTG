@@ -25,4 +25,3 @@ old tilemap:
 2: dirt top
 4: dirt bottom
 5: seases
-

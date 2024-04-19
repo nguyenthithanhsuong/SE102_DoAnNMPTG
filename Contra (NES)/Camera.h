@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 #include "ID.h"
+#include "debug.h"
 class CCamera
 {
 private:

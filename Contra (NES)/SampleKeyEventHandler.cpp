@@ -2,7 +2,7 @@
 
 
 extern CBill* bill;
-extern CLance* lance;
+extern CBill* lance;
 extern CTitle* title;
 
 void CSampleKeyHandler::OnKeyDown(int KeyCode)
@@ -31,9 +31,7 @@ void CSampleKeyHandler::KeyState(BYTE* states)
 	{
 		bill->SetState(DIK_LEFT, KEY_STATE);
 	}
-	else
-	{
-	}
+
 	if (game->IsKeyDown(DIK_UP))
 	{
 		bill->SetState(DIK_UP, KEY_STATE);
@@ -61,10 +59,5 @@ void CSampleKeyHandler::KeyState(BYTE* states)
 	if (game->IsKeyDown(DIK_S))
 	{
 		lance->SetState(DIK_S, KEY_STATE);
-	}
-
-	if (game->IsKeyDown(DIK_SPACE))
-	{
-		title->SetState(DIK_SPACE, KEY_STATE);
 	}
 }

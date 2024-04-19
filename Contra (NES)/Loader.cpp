@@ -164,7 +164,39 @@ void Loader::LoadBill()
 	ani->Add(10095);
 	ani->Add(10096);
 	animations->Add(ID_ANI_BILL_WALK_LOOK_DOWN_LEFT, ani);
-	bill = new CBill(BILL_START_X, BILL_START_Y + 50);
+
+	//swim right
+	sprites->Add(10100, 66, 131  , 129, 194  , texBill);
+	sprites->Add(10101, 131, 131  , 194, 194  , texBill);
+	ani = new CAnimation(100);
+	ani->Add(10100);
+	ani->Add(10100);
+	ani->Add(10101);
+	ani->Add(10101);
+	animations->Add(ID_ANI_BILL_SWIM_RIGHT, ani);
+
+	//swim left
+	sprites->Add(10110, 911, 391  , 974, 454  , texBill);
+	sprites->Add(10111, 846, 391  , 909, 454  , texBill);
+	ani = new CAnimation(100);
+	ani->Add(10110);
+	ani->Add(10110);
+	ani->Add(10111);
+	ani->Add(10111);
+	animations->Add(ID_ANI_BILL_SWIM_LEFT, ani);
+
+	//swim under
+	sprites->Add(10120, 586, 131 , 649, 194  , texBill);
+	sprites->Add(10121, 651, 131 , 714, 194  , texBill);
+	ani = new CAnimation(100);
+	ani->Add(10120);
+	ani->Add(10120);
+	ani->Add(10121);
+	ani->Add(10121);
+	animations->Add(ID_ANI_BILL_SWIM_UNDER, ani);
+
+
+	bill = new CBill(BILL_START_X, BILL_START_Y, true);
 	Tree->Insert(bill);
 }
 
@@ -333,7 +365,7 @@ void Loader::LoadLance()
 	ani->Add(10096);
 	animations->Add(ID_ANI_LANCE_WALK_LOOK_DOWN_LEFT, ani);
 
-	lance = new CLance(LANCE_START_X, LANCE_START_Y);
+	lance = new CBill(LANCE_START_X, LANCE_START_Y, false);
 }
 
 void Loader::LoadGreeder()
@@ -380,9 +412,6 @@ void Loader::LoadGreeder()
 	ani->Add(20021);
 	ani->Add(20022);
 	animations->Add(ID_ANI_GREEDER_RUN_RIGHT, ani);
-
-	greeder = new CGreeder(GREEDER_START_X, GREEDER_START_Y, GREEDER_RUNNING_SPEED);
-	Tree->Insert(greeder);
 }
 
 void Loader::LoadMap()
@@ -411,7 +440,7 @@ void Loader::LoadMap()
 	{
 		for (int j = 0; j < tilemap->column; j++)
 		{
-			CLand* land = new CLand(0.0f + MAP_TILE_WIDTH * j, SCREEN_HEIGHT - MAP_TILE_WIDTH * i - MAP_TILE_WIDTH * 3 / 2);
+			CLand* land = new CLand(10.0f + MAP_TILE_WIDTH * j, SCREEN_HEIGHT - MAP_TILE_WIDTH * i - MAP_TILE_WIDTH * 3 / 2);
 			land->SetState(tilemap->tilemaparray[i][j]);
 			Tree->Insert(land);
 		}
@@ -455,4 +484,21 @@ void Loader::LoadTitle()
 	animations->Add(ID_BADGE, ani);
 
 	title = new CTitle(TITLE_START_X, TITLE_START_Y, TITLE_SPEED);
+}
+
+void Loader::LoadStage1()
+{
+	CGreeder* greeder;
+	for (int i = 0; i < stage1->MobCount; ++i)
+	{
+		switch (stage1->Mobs[i].type)
+		{
+		case 1:
+			greeder = new CGreeder(stage1->Mobs[i].x, stage1->Mobs[i].y, GREEDER_RUNNING_SPEED);
+			Tree->Insert(greeder);
+			break; // Add break statement to exit the switch block
+		default:
+			break;
+		}
+	}
 }

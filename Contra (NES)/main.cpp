@@ -1,5 +1,9 @@
 #include <windows.h>
 
+#include "MapRead.h"
+
+Stage* stage1 = new Stage();
+
 #include "debug.h"
 #include "Game.h"
 #include "GameObject.h"
@@ -11,12 +15,10 @@
 #include "Sprites.h"
 
 #include "Bill.h"
-#include "Lance.h"
 #include "Land.h"
 #include "Title.h"
 
 #include "SampleKeyEventHandler.h"
-#include "ID.h"
 #include "Tilemap.h"
 #include "Loader.h"
 #include "Camera.h"
@@ -24,7 +26,7 @@
 int ObjectIDSet = 0;
 
 CBill* bill = NULL;
-CLance* lance = NULL;
+CBill* lance = NULL;
 CLand* land = NULL;
 CGame* game;
 CGreeder* greeder = NULL;
@@ -56,17 +58,18 @@ void LoadResources()
 	load.LoadGreeder();
 	load.LoadTitle();
 	load.LoadLance();
+	load.LoadStage1();
 }
 
 bool IsNodeVisible(QNode* node, float camX, float camY)
 {
 	float viewportLeft = camX;
 	float viewportBottom = camY;
-	float viewportRight = camX + SCREEN_WIDTH; // Correctly calculate right coordinate
-	float viewportTop = camY + SCREEN_HEIGHT; // Correctly calculate bottom coordinate
+	float viewportRight = camX + Camera->cam_width; // Correctly calculate right coordinate
+	float viewportTop = camY + Camera->cam_height; // Correctly calculate bottom coordinate
 
-	return !((node->rightx < viewportLeft - MAP_TILE_WIDTH) ||
-		(node->leftx > viewportRight + MAP_TILE_WIDTH));
+	return !((node->rightx < viewportLeft) ||
+		(node->leftx > viewportRight));
 }
 
 
@@ -138,7 +141,6 @@ void Render()
 	pSwapChain->Present(0, 0);
 }
 
-
 void UpdateNodes(DWORD dt, QNode* node, float camX, float camY)
 {
 	float x = 0, y = 0;
@@ -146,7 +148,7 @@ void UpdateNodes(DWORD dt, QNode* node, float camX, float camY)
 	{
 		if (node->level == Tree->HighestLevel(Tree))
 		{
-			if (true/*IsNodeVisible(node, camX, camY)*/)
+			if (IsNodeVisible(node, camX, camY))
 			{
 				for (auto& obj : node->objects) {
 					obj->Update(dt);
@@ -172,6 +174,7 @@ void UpdateNodes(DWORD dt, QNode* node, float camX, float camY)
 	else
 		return;
 }
+
 void Update(DWORD dt)
 {
 	float x, y;

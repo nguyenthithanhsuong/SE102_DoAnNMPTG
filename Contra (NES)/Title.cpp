@@ -61,11 +61,15 @@ void CTitle::SetState(int keycode, int state)
 				break;
 			}
 		}
+		else
+		{
+			x = SCREEN_WIDTH - TITLE_WIDTH - 20;
+			vx = 0;
+		}
 		break;
 	}
 
 }
-
 
 void CTitle::Update(DWORD dt)
 {
