@@ -10,87 +10,174 @@ void CBill::Render()
     int state = GetState();
     if (isBill)
     {
-        if (left && !right)
-            switch (state)
-            {
-            case (BILL_STATE_IDLE):
-                aniId = ID_ANI_BILL_IDLE_LEFT;
-                break;
-            case (BILL_STATE_WALK):
-                aniId = ID_ANI_BILL_WALK_LEFT;
-                break;
-            case (BILL_STATE_JUMP):
-                aniId = ID_ANI_BILL_JUMP_LEFT;
-                break;
-            case (BILL_STATE_RELEASE_JUMP):
-                aniId = ID_ANI_BILL_JUMP_LEFT;
-                break;
-            case (BILL_STATE_SIT):
-                aniId = ID_ANI_BILL_SIT_LEFT;
-                break;
-            case (BILL_STATE_LOOK_UP):
-                aniId = ID_ANI_BILL_LOOK_UP_LEFT;
-                break;
-            case (BILL_STATE_WALK_LOOK_UP):
-                aniId = ID_ANI_BILL_WALK_LOOK_UP_LEFT;
-                break;
-            case (BILL_STATE_WALK_LOOK_DOWN):
-                aniId = ID_ANI_BILL_WALK_LOOK_DOWN_LEFT;
-                break;
-            case (BILL_STATE_SWIM_IDLE):
-                aniId = ID_ANI_BILL_SWIM_LEFT;
-                y2 -= offset;
-                break;
-            case (BILL_STATE_SWIM_WALK):
-                aniId = ID_ANI_BILL_SWIM_LEFT;
-                y2 -= offset;
-                break;
-            case (BILL_STATE_SWIM_SIT):
-                aniId = ID_ANI_BILL_SWIM_UNDER;
-                y2 -= offset;
-                break;
-            }
+        if (RenderShoot>0)
+        {
+            if (left && !right)
+                switch (state)
+                {
+                case (BILL_STATE_IDLE):
+                    aniId = ID_ANI_BILL_IDLE_LEFT;
+                    break;
+                case (BILL_STATE_WALK):
+                    aniId = ID_ANI_BILL_WALK_LEFT;
+                    break;
+                case (BILL_STATE_JUMP):
+                    aniId = ID_ANI_BILL_JUMP_LEFT;
+                    break;
+                case (BILL_STATE_FALL):
+                    aniId = ID_ANI_BILL_JUMP_LEFT;
+                    break;
+                case (BILL_STATE_SIT):
+                    aniId = ID_ANI_BILL_SIT_LEFT;
+                    break;
+                case (BILL_STATE_LOOK_UP):
+                    aniId = ID_ANI_BILL_LOOK_UP_LEFT;
+                    break;
+                case (BILL_STATE_WALK_LOOK_UP):
+                    aniId = ID_ANI_BILL_WALK_LOOK_UP_LEFT;
+                    break;
+                case (BILL_STATE_WALK_LOOK_DOWN):
+                    aniId = ID_ANI_BILL_WALK_LOOK_DOWN_LEFT;
+                    break;
+                case (BILL_STATE_SWIM_IDLE):
+                    aniId = ID_ANI_BILL_SWIM_LEFT;
+                    y2 -= offset;
+                    break;
+                case (BILL_STATE_SWIM_WALK):
+                    aniId = ID_ANI_BILL_SWIM_LEFT;
+                    y2 -= offset;
+                    break;
+                case (BILL_STATE_SWIM_SIT):
+                    aniId = ID_ANI_BILL_SWIM_UNDER;
+                    y2 -= offset;
+                    break;
+                }
 
-        else if (!left && right)
-            switch (state)
-            {
-            case BILL_STATE_IDLE:
-                aniId = ID_ANI_BILL_IDLE_RIGHT;
-                break;
-            case BILL_STATE_WALK:
-                aniId = ID_ANI_BILL_WALK_RIGHT;
-                break;
-            case BILL_STATE_JUMP:
-                aniId = ID_ANI_BILL_JUMP_RIGHT;
-                break;
-            case BILL_STATE_RELEASE_JUMP:
-                aniId = ID_ANI_BILL_JUMP_RIGHT;
-                break;
-            case BILL_STATE_SIT:
-                aniId = ID_ANI_BILL_SIT_RIGHT;
-                break;
-            case BILL_STATE_LOOK_UP:
-                aniId = ID_ANI_BILL_LOOK_UP_RIGHT;
-                break;
-            case BILL_STATE_WALK_LOOK_UP:
-                aniId = ID_ANI_BILL_WALK_LOOK_UP_RIGHT;
-                break;
-            case BILL_STATE_WALK_LOOK_DOWN:
-                aniId = ID_ANI_BILL_WALK_LOOK_DOWN_RIGHT;
-                break;
-            case (BILL_STATE_SWIM_IDLE):
-                aniId = ID_ANI_BILL_SWIM_RIGHT;
-                y2 -= offset;
-                break;
-            case (BILL_STATE_SWIM_WALK):
-                aniId = ID_ANI_BILL_SWIM_RIGHT;
-                y2 -= offset;
-                break;
-            case (BILL_STATE_SWIM_SIT):
-                aniId = ID_ANI_BILL_SWIM_UNDER;
-                y2 -= offset;
-                break;
-            }
+            else if (!left && right)
+                switch (state)
+                {
+                case BILL_STATE_IDLE:
+                    aniId = ID_ANI_BILL_IDLE_RIGHT_SHOOT;
+                    break;
+                case BILL_STATE_WALK:
+                    aniId = ID_ANI_BILL_WALK_RIGHT_SHOOT;
+                    break;
+                case BILL_STATE_JUMP:
+                    aniId = ID_ANI_BILL_JUMP_RIGHT;
+                    break;
+                case BILL_STATE_FALL:
+                    aniId = ID_ANI_BILL_JUMP_RIGHT;
+                    break;
+                case BILL_STATE_SIT:
+                    aniId = ID_ANI_BILL_SIT_RIGHT;
+                    break;
+                case BILL_STATE_LOOK_UP:
+                    aniId = ID_ANI_BILL_LOOK_UP_RIGHT;
+                    break;
+                case BILL_STATE_WALK_LOOK_UP:
+                    aniId = ID_ANI_BILL_WALK_LOOK_UP_RIGHT;
+                    break;
+                case BILL_STATE_WALK_LOOK_DOWN:
+                    aniId = ID_ANI_BILL_WALK_LOOK_DOWN_RIGHT;
+                    break;
+                case (BILL_STATE_SWIM_IDLE):
+                    aniId = ID_ANI_BILL_SWIM_RIGHT;
+                    y2 -= offset;
+                    break;
+                case (BILL_STATE_SWIM_WALK):
+                    aniId = ID_ANI_BILL_SWIM_RIGHT;
+                    y2 -= offset;
+                    break;
+                case (BILL_STATE_SWIM_SIT):
+                    aniId = ID_ANI_BILL_SWIM_UNDER;
+                    y2 -= offset;
+                    break;
+                }
+        }
+        else
+        {
+            if (left && !right)
+                switch (state)
+                {
+                case (BILL_STATE_IDLE):
+                    aniId = ID_ANI_BILL_IDLE_LEFT;
+                    break;
+                case (BILL_STATE_WALK):
+                    aniId = ID_ANI_BILL_WALK_LEFT;
+                    break;
+                case (BILL_STATE_JUMP):
+                    aniId = ID_ANI_BILL_JUMP_LEFT;
+                    break;
+                case (BILL_STATE_FALL):
+                    aniId = ID_ANI_BILL_JUMP_LEFT;
+                    break;
+                case (BILL_STATE_SIT):
+                    aniId = ID_ANI_BILL_SIT_LEFT;
+                    break;
+                case (BILL_STATE_LOOK_UP):
+                    aniId = ID_ANI_BILL_LOOK_UP_LEFT;
+                    break;
+                case (BILL_STATE_WALK_LOOK_UP):
+                    aniId = ID_ANI_BILL_WALK_LOOK_UP_LEFT;
+                    break;
+                case (BILL_STATE_WALK_LOOK_DOWN):
+                    aniId = ID_ANI_BILL_WALK_LOOK_DOWN_LEFT;
+                    break;
+                case (BILL_STATE_SWIM_IDLE):
+                    aniId = ID_ANI_BILL_SWIM_LEFT;
+                    y2 -= offset;
+                    break;
+                case (BILL_STATE_SWIM_WALK):
+                    aniId = ID_ANI_BILL_SWIM_LEFT;
+                    y2 -= offset;
+                    break;
+                case (BILL_STATE_SWIM_SIT):
+                    aniId = ID_ANI_BILL_SWIM_UNDER;
+                    y2 -= offset;
+                    break;
+                }
+
+            else if (!left && right)
+                switch (state)
+                {
+                case BILL_STATE_IDLE:
+                    aniId = ID_ANI_BILL_IDLE_RIGHT;
+                    break;
+                case BILL_STATE_WALK:
+                    aniId = ID_ANI_BILL_WALK_RIGHT;
+                    break;
+                case BILL_STATE_JUMP:
+                    aniId = ID_ANI_BILL_JUMP_RIGHT;
+                    break;
+                case BILL_STATE_FALL:
+                    aniId = ID_ANI_BILL_JUMP_RIGHT;
+                    break;
+                case BILL_STATE_SIT:
+                    aniId = ID_ANI_BILL_SIT_RIGHT;
+                    break;
+                case BILL_STATE_LOOK_UP:
+                    aniId = ID_ANI_BILL_LOOK_UP_RIGHT;
+                    break;
+                case BILL_STATE_WALK_LOOK_UP:
+                    aniId = ID_ANI_BILL_WALK_LOOK_UP_RIGHT;
+                    break;
+                case BILL_STATE_WALK_LOOK_DOWN:
+                    aniId = ID_ANI_BILL_WALK_LOOK_DOWN_RIGHT;
+                    break;
+                case (BILL_STATE_SWIM_IDLE):
+                    aniId = ID_ANI_BILL_SWIM_RIGHT;
+                    y2 -= offset;
+                    break;
+                case (BILL_STATE_SWIM_WALK):
+                    aniId = ID_ANI_BILL_SWIM_RIGHT;
+                    y2 -= offset;
+                    break;
+                case (BILL_STATE_SWIM_SIT):
+                    aniId = ID_ANI_BILL_SWIM_UNDER;
+                    y2 -= offset;
+                    break;
+                }
+        }
     }
     else
     {
@@ -106,7 +193,7 @@ void CBill::Render()
             case (BILL_STATE_JUMP):
                 aniId = ID_ANI_LANCE_JUMP_LEFT;
                 break;
-            case (BILL_STATE_RELEASE_JUMP):
+            case (BILL_STATE_FALL):
                 aniId = ID_ANI_LANCE_JUMP_LEFT;
                 break;
             case (BILL_STATE_SIT):
@@ -134,7 +221,7 @@ void CBill::Render()
             case BILL_STATE_JUMP:
                 aniId = ID_ANI_LANCE_JUMP_RIGHT;
                 break;
-            case BILL_STATE_RELEASE_JUMP:
+            case BILL_STATE_FALL:
                 aniId = ID_ANI_LANCE_JUMP_RIGHT;
                 break;
             case BILL_STATE_SIT:
@@ -151,16 +238,25 @@ void CBill::Render()
                 break;
             }
     }
-
     animations->Get(aniId)->Render(x2, y2);
 }
 
 void CBill::Update(DWORD dt)
 { //cap nhat: kiem tra dieu kien truoc khi doi x y    
 
-    DebugOut(L"state = %i\n", state);
     vy -= GAME_GRAVITY * dt;
 
+    if (cooldown > 0)
+        cooldown--;
+    else
+        cooldown = 0;
+
+    if (RenderShoot > 0)
+        RenderShoot--;
+    else
+        RenderShoot = 0;
+
+    DebugOut(L"cooldown = % i, Render = % i\n", cooldown, RenderShoot);
     if (left && !right)
     {
         nx = -1;
@@ -170,7 +266,7 @@ void CBill::Update(DWORD dt)
         nx = 1;
     }
     if (vy < -GAME_GRAVITY * dt)
-        SetState(BILL_STATE_RELEASE_JUMP);
+        SetState(BILL_STATE_FALL);
     if (GetState(BILL_STATE_DIE))
     {
     }
@@ -182,7 +278,7 @@ void CBill::Update(DWORD dt)
             isOnPlatform = false;
         }
     }
-    else if (GetState(BILL_STATE_RELEASE_JUMP))
+    else if (GetState(BILL_STATE_FALL))
     {
         if (!isOnPlatform)
         {
@@ -227,7 +323,14 @@ void CBill::Update(DWORD dt)
 
 void CBill::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-    if (!GetState(BILL_STATE_SWIM_IDLE) && !GetState(BILL_STATE_SWIM_WALK) && !GetState(BILL_STATE_SWIM_SIT))
+    if (GetState(BILL_STATE_SIT))
+    {
+        top = y - BILL_HEIGHT / 3;
+        bottom = y - BILL_HEIGHT / 2;
+        left = x - BILL_WIDTH;
+        right = x + BILL_WIDTH;
+    }
+    else if (!GetState(BILL_STATE_SWIM_IDLE) && !GetState(BILL_STATE_SWIM_WALK) && !GetState(BILL_STATE_SWIM_SIT))
     {
         top = y + BILL_HEIGHT / 2;
         bottom = y - BILL_HEIGHT / 2;
@@ -323,6 +426,10 @@ void CBill::SetState(int keycode, int action)
         case DIK_RIGHT: // Go right
             RightKey(action);
             break;
+
+        case DIK_RSHIFT: //shoot
+            ShootKey(action);
+            break;
         }
     }
     else
@@ -361,25 +468,35 @@ void CBill::LeftKey(int action)
     case ON_KEY_DOWN:
         if (GetState(BILL_STATE_SWIM_SIT))
             break;
-        if (GetState(BILL_STATE_SWIM_IDLE) || GetState(BILL_STATE_SWIM_WALK))
+        if (GetState(BILL_STATE_JUMP) || GetState(BILL_STATE_FALL))
+            break;
+
+        if (isSwimming)
             SetState(BILL_STATE_SWIM_WALK);
-        else if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+        else
             SetState(BILL_STATE_WALK);
         left = true;
         right = false;
         break;
+
+
     case ON_KEY_UP:
-        if(GetState(BILL_STATE_SWIM_WALK))
+        if(isSwimming)
             SetState(BILL_STATE_SWIM_IDLE);
-        else if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+        else
             SetState(BILL_STATE_IDLE);
         break;
+
+
     case KEY_STATE:
         if (GetState(BILL_STATE_SWIM_SIT))
             break;
-        if (GetState(BILL_STATE_SWIM_IDLE) || GetState(BILL_STATE_SWIM_WALK))
+        if (GetState(BILL_STATE_JUMP) || GetState(BILL_STATE_FALL))
+            break;
+
+        if (isSwimming)
             SetState(BILL_STATE_SWIM_WALK);
-        else if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+        else
             SetState(BILL_STATE_WALK);
         left = true;
         right = false;
@@ -394,29 +511,41 @@ void CBill::RightKey(int action)
     case ON_KEY_DOWN:
         if (GetState(BILL_STATE_SWIM_SIT))
             break;
-        if (GetState(BILL_STATE_SWIM_IDLE)|| GetState(BILL_STATE_SWIM_WALK))
+        if (GetState(BILL_STATE_JUMP) || GetState(BILL_STATE_FALL))
+            break;
+
+        if (isSwimming)
             SetState(BILL_STATE_SWIM_WALK);
-        else if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+        else
             SetState(BILL_STATE_WALK);
-        left = false;
         right = true;
+        left = false;
         break;
+
+
     case ON_KEY_UP:
-        if (GetState(BILL_STATE_SWIM_WALK))
+        if (isSwimming)
             SetState(BILL_STATE_SWIM_IDLE);
-        else if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+        else
             SetState(BILL_STATE_IDLE);
         break;
+
+
     case KEY_STATE:
         if (GetState(BILL_STATE_SWIM_SIT))
             break;
-        if (GetState(BILL_STATE_SWIM_IDLE) || GetState(BILL_STATE_SWIM_WALK))
+        if (GetState(BILL_STATE_JUMP) || GetState(BILL_STATE_FALL))
+            break;
+
+        if (isSwimming)
             SetState(BILL_STATE_SWIM_WALK);
-        else if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+        else
             SetState(BILL_STATE_WALK);
-        left = false;
         right = true;
+        left = false;
         break;
+
+
     }
 }
 
@@ -425,9 +554,14 @@ void CBill::DownKey(int action)
     switch (action)
     {
     case ON_KEY_DOWN:
-        if (GetState(BILL_STATE_SWIM_IDLE) || GetState(BILL_STATE_SWIM_WALK) || GetState(BILL_STATE_SWIM_SIT))
+        if (isSwimming)
+        {
             SetState(BILL_STATE_SWIM_SIT);
-        else if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+            break;
+        }
+        if (GetState(BILL_STATE_JUMP) || GetState(BILL_STATE_FALL))
+            break;
+        else
         {
             if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_UP) || GetState(BILL_STATE_WALK_LOOK_DOWN))
                 SetState(BILL_STATE_WALK_LOOK_DOWN);
@@ -437,7 +571,7 @@ void CBill::DownKey(int action)
         break;
 
     case ON_KEY_UP:
-        if (GetState(BILL_STATE_SWIM_IDLE) || GetState(BILL_STATE_SWIM_WALK) || GetState(BILL_STATE_SWIM_SIT))
+        if (isSwimming)
             SetState(BILL_STATE_SWIM_IDLE);
         else if (GetState(BILL_STATE_SIT))
             SetState(BILL_STATE_IDLE);
@@ -446,9 +580,14 @@ void CBill::DownKey(int action)
         break;
 
     case KEY_STATE:
-        if(GetState(BILL_STATE_SWIM_IDLE)||GetState(BILL_STATE_SWIM_WALK)||GetState(BILL_STATE_SWIM_SIT))
+        if (isSwimming)
+        {
             SetState(BILL_STATE_SWIM_SIT);
-        else if (!GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+            break;
+        }
+        if (GetState(BILL_STATE_JUMP) || GetState(BILL_STATE_FALL))
+            break;
+        else
         {
             if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_UP) || GetState(BILL_STATE_WALK_LOOK_DOWN))
                 SetState(BILL_STATE_WALK_LOOK_DOWN);
@@ -463,9 +602,9 @@ void CBill::UpKey(int action)
     switch (action)
     {
     case ON_KEY_DOWN:
-        if (GetState(BILL_STATE_SWIM_IDLE) || GetState(BILL_STATE_SWIM_WALK) || GetState(BILL_STATE_SWIM_SIT))
+        if (isSwimming)
             break;
-        if (!GetState(BILL_STATE_SIT) && !GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+        if (!GetState(BILL_STATE_SIT) && !GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_FALL))
         {
             if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_UP))
                 SetState(BILL_STATE_WALK_LOOK_UP);
@@ -484,10 +623,9 @@ void CBill::UpKey(int action)
         }
         break;
     case KEY_STATE:
-        if (GetState(BILL_STATE_SWIM_IDLE) || GetState(BILL_STATE_SWIM_WALK) || GetState(BILL_STATE_SWIM_SIT))
-            SetState(BILL_STATE_SWIM_SIT);
-        break;
-        if (!GetState(BILL_STATE_SIT) && !GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_RELEASE_JUMP))
+        if (isSwimming)
+            break;
+        if (!GetState(BILL_STATE_SIT) && !GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_FALL))
         {
             if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_UP))
                 SetState(BILL_STATE_WALK_LOOK_UP);
@@ -504,6 +642,8 @@ void CBill::JumpKey(int action)
     {
     case ON_KEY_DOWN:
 
+        if (isSwimming)
+            break;
         if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_IDLE) || GetState(BILL_STATE_WALK_LOOK_DOWN) || GetState(BILL_STATE_WALK_LOOK_UP))
         {
             SetState(BILL_STATE_JUMP);
@@ -512,10 +652,84 @@ void CBill::JumpKey(int action)
     case ON_KEY_UP:
         if (GetState(BILL_STATE_JUMP))
         {
-            SetState(BILL_STATE_RELEASE_JUMP);
+            SetState(BILL_STATE_FALL);
         }
         break;
     case KEY_STATE:
         break;
+    }
+}
+
+void CBill::ShootKey(int action)
+{
+    if (cooldown > 0)
+    { }
+    else
+    {
+        int gun_height = 4;
+        CBullet* bullet = NULL;
+        switch (action)
+        {
+        case ON_KEY_DOWN:
+            float l, b, t, r;
+            GetBoundingBox(l, t, r, b);
+            if ((GetState(BILL_STATE_IDLE) || GetState(BILL_STATE_WALK)
+                || GetState(BILL_STATE_JUMP) || GetState(BILL_STATE_FALL)
+                || GetState(BILL_STATE_SIT) || GetState(BILL_STATE_SWIM_IDLE)
+                || GetState(BILL_STATE_SWIM_WALK)))
+            {
+                if (right && !left)
+                    bullet = new CBullet(r, (b + t) / 2 + gun_height, 0, true);
+                else if (left && !right)
+                    bullet = new CBullet(l, (b + t) / 2 + gun_height, 180, true);
+                else
+                    break;
+            }
+            else if (GetState(BILL_STATE_LOOK_UP))
+                if (right && !left)
+                {
+                    bullet = new CBullet((l + r) / 2 + 4, t, 90, true);
+                }
+                else if (left && !right)
+                {
+                    bullet = new CBullet((l + r) / 2 - 4, t, 90, true);
+                }
+                else
+                {
+
+                }
+            else if (GetState(BILL_STATE_WALK_LOOK_UP))
+            {
+                if (right && !left)
+                    bullet = new CBullet(r + 5, t, 45, true);
+                else if (left && !right)
+                    bullet = new CBullet(l - 5, t, 135, true);
+                else
+                    break;
+            }
+            else if (GetState(BILL_STATE_WALK_LOOK_DOWN))
+            {
+                if (right && !left)
+                    bullet = new CBullet(r + 5, (t + b) / 2, 315, true);
+                else if (left && !right)
+                    bullet = new CBullet(l - 5, (t + b) / 2, 225, true);
+                else
+                    break;
+            }
+            else
+                break;
+            if (bullet != NULL)
+            {
+                Tree->Insert(bullet);
+                cooldown = BILL_COOLDOWN;
+                RenderShoot = BILL_COOLDOWN - 5;
+            }
+            break;
+        case ON_KEY_UP:
+            break;
+
+        case KEY_STATE:
+            break;
+        }
     }
 }

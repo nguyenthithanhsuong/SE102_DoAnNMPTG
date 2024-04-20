@@ -17,7 +17,7 @@ Stage* stage1 = new Stage();
 #include "Bill.h"
 #include "Land.h"
 #include "Title.h"
-
+#include "Deleted.h";
 #include "SampleKeyEventHandler.h"
 #include "Tilemap.h"
 #include "Loader.h"
@@ -58,6 +58,7 @@ void LoadResources()
 	load.LoadGreeder();
 	load.LoadTitle();
 	load.LoadLance();
+	load.LoadOthers();
 	load.LoadStage1();
 }
 
@@ -152,6 +153,10 @@ void UpdateNodes(DWORD dt, QNode* node, float camX, float camY)
 			{
 				for (auto& obj : node->objects) {
 					obj->Update(dt);
+					if (obj->IsDeleted(obj))
+					{
+						obj = new Deleted();
+					}
 					if (obj == bill)
 					{
 						bill->GetPosition(x, y);

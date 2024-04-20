@@ -14,9 +14,18 @@ void Loader::LoadBill()
 	ani = new CAnimation(100);
 
 	//idle right
-	sprites->Add(10000, 716, 1, 779, 64, texBill);
+	sprites->Add(10000, 521, 1, 584, 64, texBill);
+	ani = new CAnimation(100);
 	ani->Add(10000);
 	animations->Add(ID_ANI_BILL_IDLE_RIGHT, ani);
+
+	//idle right SHOOT
+	sprites->Add(12000, 521, 1, 584, 64, texBill);
+	sprites->Add(12001, 716, 1, 779, 64, texBill);
+	ani = new CAnimation(100);
+	ani->Add(12000);
+	ani->Add(12001);
+	animations->Add(ID_ANI_BILL_IDLE_RIGHT_SHOOT, ani);
 
 	//walk right
 	sprites->Add(10001, 1, 1, 64, 64, texBill);
@@ -33,6 +42,16 @@ void Loader::LoadBill()
 	ani->Add(10005);
 	ani->Add(10006);
 	animations->Add(ID_ANI_BILL_WALK_RIGHT, ani);
+
+	//walk right SHOOT
+	sprites->Add(12001, 391, 1, 454, 64, texBill);
+	sprites->Add(12002, 651, 1, 714, 64, texBill);
+	sprites->Add(12003, 521, 1, 584, 64, texBill);
+	ani = new CAnimation(100);
+	ani->Add(12001);
+	ani->Add(12002);
+	ani->Add(12003);
+	animations->Add(ID_ANI_BILL_WALK_RIGHT_SHOOT, ani);
 
 	//idle left
 	sprites->Add(10010, 456, 261, 519, 324, texBill);
@@ -484,6 +503,25 @@ void Loader::LoadTitle()
 	animations->Add(ID_BADGE, ani);
 
 	title = new CTitle(TITLE_START_X, TITLE_START_Y, TITLE_SPEED);
+}
+
+void Loader::LoadOthers()
+{
+	CTextures* textures = CTextures::GetInstance();
+
+	textures->Add(ID_TEX_BULLET, TEXTURE_PATH_MISC);
+
+	CSprites* sprites = CSprites::GetInstance();
+	CAnimations* animations = CAnimations::GetInstance();
+
+	LPTEXTURE texBullet = textures->Get(ID_TEX_BULLET);
+	LPANIMATION ani;
+	ani = new CAnimation(100);
+
+	//idle right
+	sprites->Add(10000, 591, 22, 593, 25, texBullet);
+	ani->Add(10000);
+	animations->Add(ID_ANI_BULLET, ani);
 }
 
 void Loader::LoadStage1()

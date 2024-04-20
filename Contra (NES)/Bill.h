@@ -9,6 +9,7 @@
 #include "ID.h"
 #include "Greeder.h"
 #include "Land.h"
+#include "Bullet.h"
 #include "BinaryTree.h"
 
 #define BILL_UNTOUCHABLE_TIME 2500
@@ -29,14 +30,16 @@ public:
 	bool Collision = false;
 	bool isBill = true;
 	bool isSwimming = false;
+	int cooldown = 0;
+	int RenderShoot;
 	CBill(float x, float y, bool isBill) : CGameObject(x, y)
 	{
 		IsDynamic = true;
-		state = BILL_STATE_RELEASE_JUMP;
+		state = BILL_STATE_FALL;
 		left = false;
 		right = true;
 		isOnPlatform = false;
-
+		RenderShoot = 0;
 		untouchable = 0;
 		untouchable_start = -1;
 		this->isBill = isBill;
@@ -60,6 +63,7 @@ public:
 	void UpKey(int action);
 	void DownKey(int action);
 	void JumpKey(int action);
+	void ShootKey(int action);
 	//Collision:
 	virtual int IsCollidable() { return 1; };
 	int IsBlocking()

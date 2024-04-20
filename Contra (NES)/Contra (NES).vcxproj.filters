@@ -46,9 +46,6 @@
     <ClCompile Include="BinaryTree.cpp">
       <Filter>Game\Game\Tree</Filter>
     </ClCompile>
-    <ClCompile Include="Deleted.cpp">
-      <Filter>Game\Characters\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Greeder.cpp">
       <Filter>Game\Characters\NPC\Greeder</Filter>
     </ClCompile>
@@ -61,7 +58,15 @@
     <ClCompile Include="Bill.cpp">
       <Filter>Game\Characters\Playable</Filter>
     </ClCompile>
-    <ClCompile Include="MapRead.cpp" />
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Game\Characters\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MapRead.cpp">
+      <Filter>Amain\MAPfile</Filter>
+    </ClCompile>
+    <ClCompile Include="Deleted.cpp">
+      <Filter>Game\Characters\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Land.h">
@@ -118,9 +123,6 @@
     <ClInclude Include="BinaryTree.h">
       <Filter>Game\Game\Tree</Filter>
     </ClInclude>
-    <ClInclude Include="Deleted.h">
-      <Filter>Game\Characters\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Greeder.h">
       <Filter>Game\Characters\NPC\Greeder</Filter>
     </ClInclude>
@@ -135,6 +137,12 @@
     </ClInclude>
     <ClInclude Include="MapRead.h">
       <Filter>Amain\MAPfile</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Game\Characters\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Deleted.h">
+      <Filter>Game\Characters\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

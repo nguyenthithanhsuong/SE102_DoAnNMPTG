@@ -42,5 +42,6 @@ public:
 	void LoadGreeder();
 	void LoadMap();
 	void LoadTitle();
+	void LoadOthers();
 	void LoadStage1();
 };
