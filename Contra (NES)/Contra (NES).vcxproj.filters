@@ -67,6 +67,12 @@
     <ClCompile Include="Deleted.cpp">
       <Filter>Game\Characters\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Shooter.cpp">
+      <Filter>Game\Characters\NPC\Shooter</Filter>
+    </ClCompile>
+    <ClCompile Include="Turret.cpp">
+      <Filter>Game\Characters\NPC\Turret</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Land.h">
@@ -144,6 +150,12 @@
     <ClInclude Include="Deleted.h">
       <Filter>Game\Characters\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Shooter.h">
+      <Filter>Game\Characters\NPC\Shooter</Filter>
+    </ClInclude>
+    <ClInclude Include="Turret.h">
+      <Filter>Game\Characters\NPC\Turret</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">
@@ -214,6 +226,12 @@
     </Filter>
     <Filter Include="Amain\MAPfile">
       <UniqueIdentifier>{e2bf28fb-040d-4c6d-914b-b9d1a24c773f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\NPC\Shooter">
+      <UniqueIdentifier>{6dc86f44-0732-47db-9609-c1cbf37f7022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\NPC\Turret">
+      <UniqueIdentifier>{14ce32ed-6ef4-4281-b551-744b8c7dd0d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -433,6 +433,240 @@ void Loader::LoadGreeder()
 	animations->Add(ID_ANI_GREEDER_RUN_RIGHT, ani);
 }
 
+void Loader::LoadShooter()
+{
+	CTextures* textures = CTextures::GetInstance();
+
+	textures->Add(ID_TEX_SHOOTER, TEXTURE_PATH_ENEMIES);
+
+	CSprites* sprites = CSprites::GetInstance();
+	CAnimations* animations = CAnimations::GetInstance();
+
+	LPTEXTURE texShooter = textures->Get(ID_TEX_SHOOTER);
+
+	//look up left
+	sprites->Add(21011, 819, 11, 836, 48, texShooter);
+	sprites->Add(21012, 839, 11, 856, 48, texShooter);
+
+	LPANIMATION ani;
+	ani = new CAnimation(500);
+	ani->Add(21011);
+	ani->Add(21012);
+	animations->Add(ID_ANI_SHOOTER_LOOK_LEFT_UP, ani);
+
+	//look left
+	sprites->Add(21013, 768, 17, 791, 48, texShooter);
+	sprites->Add(21014, 793, 17, 816, 48, texShooter);
+
+	ani = new CAnimation(500);
+	ani->Add(21013);
+	ani->Add(21014);
+	animations->Add(ID_ANI_SHOOTER_LOOK_LEFT, ani);
+
+	//look down left
+	sprites->Add(21015, 858, 18, 881, 49, texShooter);
+	sprites->Add(21016, 883, 17, 906, 48, texShooter);
+
+	ani = new CAnimation(500);
+	ani->Add(21015);
+	ani->Add(21016);
+	animations->Add(ID_ANI_SHOOTER_LOOK_LEFT_DOWN, ani);
+
+	//look up right
+	sprites->Add(21017, 52, 453, 69, 490, texShooter);
+	sprites->Add(21018, 72, 453, 89, 490, texShooter);
+
+	ani = new CAnimation(500);
+	ani->Add(21017);
+	ani->Add(21018);
+	animations->Add(ID_ANI_SHOOTER_LOOK_RIGHT_UP, ani);
+
+	//look right
+	sprites->Add(21019, 91, 459, 114, 490, texShooter);
+	sprites->Add(21020, 116, 459, 139, 490, texShooter);
+
+	ani = new CAnimation(500);
+	ani->Add(21019);
+	ani->Add(21020);
+	animations->Add(ID_ANI_SHOOTER_LOOK_RIGHT, ani);
+
+	//look down right
+	sprites->Add(21021, 1, 459, 24, 490, texShooter);
+	sprites->Add(21022, 26, 460, 49, 491, texShooter);
+
+	ani = new CAnimation(500);
+	ani->Add(21021);
+	ani->Add(21022);
+	animations->Add(ID_ANI_SHOOTER_LOOK_RIGHT_DOWN, ani);
+}
+
+void Loader::LoadTurret()
+{
+	CTextures* textures = CTextures::GetInstance();
+
+	textures->Add(ID_TEX_TURRET, TEXTURE_PATH_TURRET);
+
+	CSprites* sprites = CSprites::GetInstance();
+	CAnimations* animations = CAnimations::GetInstance();
+
+	LPTEXTURE texShooter = textures->Get(ID_TEX_TURRET);
+	LPANIMATION ani;
+
+	//idle
+	sprites->Add(25011, 0, 0, 31, 31, texShooter);
+	sprites->Add(25012, 32, 0, 63, 31, texShooter);
+	sprites->Add(25013, 64, 0, 95, 31, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25011);
+	ani->Add(25012);
+	ani->Add(25013);
+	animations->Add(ID_ANI_TURRET_IDLE, ani);
+
+	//Open
+	sprites->Add(25014, 0, 32, 31, 63, texShooter);
+	sprites->Add(25015, 32, 32, 63, 63, texShooter);
+	sprites->Add(25016, 64, 32, 95, 63, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25014);
+	ani->Add(25015);
+	ani->Add(25016);
+	animations->Add(ID_ANI_TURRET_OPEN, ani);
+
+	//look 9h
+	sprites->Add(25017, 0, 64, 31, 95, texShooter);
+	sprites->Add(25018, 32, 64, 63, 95, texShooter);
+	sprites->Add(25019, 64, 64, 95, 95, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25017);
+	ani->Add(25018);
+	ani->Add(25019);
+	animations->Add(ID_ANI_TURRET_LOOK_9H, ani);
+
+	//look 10h
+	sprites->Add(25021, 0, 96, 31, 127, texShooter);
+	sprites->Add(25022, 32, 96, 63, 127, texShooter);
+	sprites->Add(25023, 64, 96, 95, 127, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25021);
+	ani->Add(25022);
+	ani->Add(25023);
+	animations->Add(ID_ANI_TURRET_LOOK_10H, ani);
+
+	//look 11h
+	sprites->Add(25024, 0, 128, 31, 159, texShooter);
+	sprites->Add(25025, 32, 128, 63, 159, texShooter);
+	sprites->Add(25026, 64, 128, 95, 159, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25024);
+	ani->Add(25025);
+	ani->Add(25026);
+	animations->Add(ID_ANI_TURRET_LOOK_11H, ani);
+
+	//look 12h
+	sprites->Add(25027, 0, 160, 31, 191, texShooter);
+	sprites->Add(25028, 32, 160, 63, 191, texShooter);
+	sprites->Add(25029, 64, 160, 95, 191, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25027);
+	ani->Add(25028);
+	ani->Add(25029);
+	animations->Add(ID_ANI_TURRET_LOOK_12H, ani);
+
+	//look 1h
+	sprites->Add(25031, 0, 192, 31, 223, texShooter);
+	sprites->Add(25032, 32, 192, 63, 223, texShooter);
+	sprites->Add(25033, 64, 192, 95, 223, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25031);
+	ani->Add(25032);
+	ani->Add(25033);
+	animations->Add(ID_ANI_TURRET_LOOK_1H, ani);
+
+	//look 2h
+	sprites->Add(25034, 0, 224, 31, 255, texShooter);
+	sprites->Add(25035, 32, 224, 63, 255, texShooter);
+	sprites->Add(25036, 64, 224, 95, 255, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25034);
+	ani->Add(25035);
+	ani->Add(25036);
+	animations->Add(ID_ANI_TURRET_LOOK_2H, ani);
+
+	//look 3h
+	sprites->Add(25037, 0, 256, 31, 287, texShooter);
+	sprites->Add(25038, 32, 256, 63, 287, texShooter);
+	sprites->Add(25039, 64, 256, 95, 287, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25037);
+	ani->Add(25038);
+	ani->Add(25039);
+	animations->Add(ID_ANI_TURRET_LOOK_3H, ani);
+
+	//look 4h
+	sprites->Add(25041, 0, 288, 31, 319, texShooter);
+	sprites->Add(25042, 32, 288, 63, 319, texShooter);
+	sprites->Add(25043, 64, 288, 95, 319, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25041);
+	ani->Add(25042);
+	ani->Add(25043);
+	animations->Add(ID_ANI_TURRET_LOOK_4H, ani);
+
+	//look 5h
+	sprites->Add(25044, 0, 320, 31, 351, texShooter);
+	sprites->Add(25045, 32, 320, 63, 351, texShooter);
+	sprites->Add(25046, 64, 320, 95, 351, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25044);
+	ani->Add(25045);
+	ani->Add(25046);
+	animations->Add(ID_ANI_TURRET_LOOK_5H, ani);
+
+	//look 6h
+	sprites->Add(25047, 0, 352, 31, 383, texShooter);
+	sprites->Add(25048, 32, 352, 63, 383, texShooter);
+	sprites->Add(25049, 64, 352, 95, 383, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25047);
+	ani->Add(25048);
+	ani->Add(25049);
+	animations->Add(ID_ANI_TURRET_LOOK_6H, ani);
+
+	//look 7h
+	sprites->Add(25051, 0, 384, 31, 415, texShooter);
+	sprites->Add(25052, 32, 384, 63, 415, texShooter);
+	sprites->Add(25053, 64, 384, 95, 415, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25051);
+	ani->Add(25052);
+	ani->Add(25053);
+	animations->Add(ID_ANI_TURRET_LOOK_7H, ani);
+
+	//look 8h
+	sprites->Add(25054, 0, 416, 31, 447, texShooter);
+	sprites->Add(25055, 32, 416, 63, 447, texShooter);
+	sprites->Add(25056, 64, 416, 95, 447, texShooter);
+
+	ani = new CAnimation(200);
+	ani->Add(25054);
+	ani->Add(25055);
+	ani->Add(25056);
+	animations->Add(ID_ANI_TURRET_LOOK_8H, ani);
+}
+
 void Loader::LoadMap()
 {
 	CTextures* textures = CTextures::GetInstance();
@@ -535,6 +769,14 @@ void Loader::LoadStage1()
 			greeder = new CGreeder(stage1->Mobs[i].x, stage1->Mobs[i].y, GREEDER_RUNNING_SPEED);
 			Tree->Insert(greeder);
 			break; // Add break statement to exit the switch block
+		case 2:
+			shooter = new CShooter(stage1->Mobs[i].x, stage1->Mobs[i].y);
+			Tree->Insert(shooter);
+			break;
+		case 3:
+			turret = new CTurret(stage1->Mobs[i].x, stage1->Mobs[i].y);
+			Tree->Insert(turret);
+			break;
 		default:
 			break;
 		}

@@ -16,6 +16,8 @@ extern Stage* stage1;
 
 #include "Bill.h"
 #include "Greeder.h"
+#include "Shooter.h"
+#include "Turret.h"
 #include "Land.h"
 #include "Title.h"
 
@@ -29,6 +31,8 @@ extern CBill* lance;
 extern CLand* land;
 extern CGame* game;
 extern CGreeder* greeder;
+extern CShooter* shooter;
+extern CTurret* turret;
 extern CTitle* title;
 
 extern CSampleKeyHandler* keyHandler;
@@ -39,7 +43,9 @@ class Loader
 public:
 	void LoadBill();
 	void LoadLance();
-	void LoadGreeder();
+	void LoadGreeder();	
+	void LoadShooter();
+	void LoadTurret();
 	void LoadMap();
 	void LoadTitle();
 	void LoadOthers();

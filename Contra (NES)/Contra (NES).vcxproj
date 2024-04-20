@@ -144,11 +144,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapRead.cpp" />
     <ClCompile Include="SampleKeyEventHandler.cpp" />
+    <ClCompile Include="Shooter.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="Turret.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -170,12 +172,14 @@
     <ClInclude Include="Loader.h" />
     <ClInclude Include="MapRead.h" />
     <ClInclude Include="SampleKeyEventHandler.h" />
+    <ClInclude Include="Shooter.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Tilemap.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="Turret.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

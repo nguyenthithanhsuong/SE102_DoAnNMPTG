@@ -30,6 +30,8 @@ CBill* lance = NULL;
 CLand* land = NULL;
 CGame* game;
 CGreeder* greeder = NULL;
+CShooter* shooter = NULL;
+CTurret* turret = NULL;
 CTitle* title = NULL;
 
 CCamera* Camera = new CCamera();
@@ -54,9 +56,11 @@ void LoadResources()
 {
 	Loader load;
 	load.LoadMap();
-	load.LoadBill();
-	load.LoadGreeder();
+	load.LoadGreeder();	
+	load.LoadShooter();
+	load.LoadTurret();
 	load.LoadTitle();
+	load.LoadBill();
 	load.LoadLance();
 	load.LoadOthers();
 	load.LoadStage1();
