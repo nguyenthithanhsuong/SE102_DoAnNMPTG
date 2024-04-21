@@ -214,6 +214,39 @@ void Loader::LoadBill()
 	ani->Add(10121);
 	animations->Add(ID_ANI_BILL_SWIM_UNDER, ani);
 
+	//swim look up
+	sprites->Add(ID_ANI_BILL_SWIM_LOOK_UP_RIGHT + 1, 477, 136, 505, 169, texBill);
+	sprites->Add(ID_ANI_BILL_SWIM_LOOK_UP_RIGHT+ 2, 543, 136, 571, 169, texBill);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIM_LOOK_UP_RIGHT + 1);
+	ani->Add(ID_ANI_BILL_SWIM_LOOK_UP_RIGHT + 2);
+
+	animations->Add(ID_ANI_BILL_SWIM_LOOK_UP_RIGHT, ani);
+
+	sprites->Add(ID_ANI_BILL_SWIM_LOOK_UP_LEFT + 1, 537, 394, 565, 427, texBill);
+	sprites->Add(ID_ANI_BILL_SWIM_LOOK_UP_LEFT + 2, 500, 132, 569, 174, texBill);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIM_LOOK_UP_LEFT + 1);
+	ani->Add(ID_ANI_BILL_SWIM_LOOK_UP_LEFT + 2);
+
+	animations->Add(ID_ANI_BILL_SWIM_LOOK_UP_LEFT, ani);
+
+	//swim shoot
+	sprites->Add(ID_ANI_BILL_SWIM_RIGHT_SHOOT + 1, 213, 144, 317, 171, texBill);
+	sprites->Add(ID_ANI_BILL_SWIM_RIGHT_SHOOT + 2, 280, 136, 571, 169, texBill);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIM_RIGHT_SHOOT + 1);
+	ani->Add(ID_ANI_BILL_SWIM_RIGHT_SHOOT + 2);
+
+	animations->Add(ID_ANI_BILL_SWIM_RIGHT_SHOOT, ani);
+
+	sprites->Add(ID_ANI_BILL_SWIM_LEFT_SHOOT + 1, 789, 403, 826, 430, texBill);
+	sprites->Add(ID_ANI_BILL_SWIM_LEFT_SHOOT +2, 727, 403, 764, 430, texBill);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_BILL_SWIM_LEFT_SHOOT + 1);
+	ani->Add(ID_ANI_BILL_SWIM_LEFT_SHOOT + 2);
+
+	animations->Add(ID_ANI_BILL_SWIM_LEFT_SHOOT, ani);
 
 	bill = new CBill(BILL_START_X, BILL_START_Y, true);
 	Tree->Insert(bill);
@@ -384,6 +417,39 @@ void Loader::LoadLance()
 	ani->Add(10096);
 	animations->Add(ID_ANI_LANCE_WALK_LOOK_DOWN_LEFT, ani);
 
+
+	//swim left
+	sprites->Add(ID_ANI_LANCE_SWIM_LEFT + 1, 928, 407, 957, 430, texLance);
+	sprites->Add(ID_ANI_LANCE_SWIM_LEFT + 2, 861, 407, 890, 430, texLance);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_LANCE_SWIM_LEFT + 1);
+	ani->Add(ID_ANI_LANCE_SWIM_LEFT + 1);
+	ani->Add(ID_ANI_LANCE_SWIM_LEFT + 2);
+	ani->Add(ID_ANI_LANCE_SWIM_LEFT + 2);
+
+	animations->Add(ID_ANI_LANCE_SWIM_LEFT, ani);
+
+	//swim right
+	sprites->Add(ID_ANI_LANCE_SWIM_RIGHT + 1 , 86, 145, 112, 174, texLance);
+	sprites->Add(ID_ANI_LANCE_SWIM_RIGHT + 2, 150, 145, 176, 174, texLance);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_LANCE_SWIM_RIGHT + 1);
+	ani->Add(ID_ANI_LANCE_SWIM_RIGHT + 1);
+	ani->Add(ID_ANI_LANCE_SWIM_RIGHT + 2);
+	ani->Add(ID_ANI_LANCE_SWIM_RIGHT + 2);
+	animations->Add(ID_ANI_LANCE_SWIM_RIGHT, ani);
+
+	//swim under
+	sprites->Add(ID_ANI_LANCE_SWIM_UNDER + 2, 601, 147, 629, 180, texLance);
+	sprites->Add(ID_ANI_LANCE_SWIM_UNDER + 3, 664, 147, 692, 180, texLance);
+	ani = new CAnimation(100);
+	ani->Add(ID_ANI_LANCE_SWIM_UNDER + 2);
+	ani->Add(ID_ANI_LANCE_SWIM_UNDER + 3);
+	ani->Add(ID_ANI_LANCE_SWIM_UNDER + 3);
+	ani->Add(ID_ANI_LANCE_SWIM_UNDER + 3);
+
+	animations->Add(ID_ANI_LANCE_SWIM_UNDER, ani);
+
 	lance = new CBill(LANCE_START_X, LANCE_START_Y, false);
 }
 
@@ -431,6 +497,8 @@ void Loader::LoadGreeder()
 	ani->Add(20021);
 	ani->Add(20022);
 	animations->Add(ID_ANI_GREEDER_RUN_RIGHT, ani);
+
+
 }
 
 void Loader::LoadShooter()

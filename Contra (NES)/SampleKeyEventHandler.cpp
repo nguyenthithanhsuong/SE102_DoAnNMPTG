@@ -60,4 +60,5 @@ void CSampleKeyHandler::KeyState(BYTE* states)
 	{
 		lance->SetState(DIK_S, KEY_STATE);
 	}
+
 }
