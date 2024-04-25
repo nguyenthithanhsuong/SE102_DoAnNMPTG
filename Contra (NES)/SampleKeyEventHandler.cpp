@@ -40,6 +40,11 @@ void CSampleKeyHandler::KeyState(BYTE* states)
 	{
 		bill->SetState(DIK_DOWN, KEY_STATE);
 	}
+	else if (game->IsKeyDown(DIK_RSHIFT))
+	{
+		bill->SetState(DIK_S, KEY_STATE);
+	}
+
 
 	if (game->IsKeyDown(DIK_D))
 	{
@@ -60,5 +65,6 @@ void CSampleKeyHandler::KeyState(BYTE* states)
 	{
 		lance->SetState(DIK_S, KEY_STATE);
 	}
+
 
 }

@@ -10,7 +10,7 @@ void CBill::Render()
     int state = GetState();
     if (isBill)
     {
-        if (RenderShoot>0)
+        if (RenderShoot > 0)
         {
             if (left && !right)
                 switch (state)
@@ -40,19 +40,19 @@ void CBill::Render()
                     aniId = ID_ANI_BILL_WALK_LOOK_DOWN_LEFT;
                     break;
                 case (BILL_STATE_SWIM_IDLE):
-                    aniId = ID_ANI_BILL_SWIM_LEFT;
+                    aniId = ID_ANI_BILL_SWIM_LEFT_SHOOT;
                     y2 -= offset;
                     break;
                 case (BILL_STATE_SWIM_WALK):
-                    aniId = ID_ANI_BILL_SWIM_LEFT;
+                    aniId = ID_ANI_BILL_SWIM_LEFT_SHOOT;
                     y2 -= offset;
                     break;
                 case (BILL_STATE_SWIM_SIT):
                     aniId = ID_ANI_BILL_SWIM_UNDER;
                     y2 -= offset;
                     break;
-                case (BILL_STATE_SWIM_SHOOT):
-                    aniId = ID_ANI_BILL_SWIM_RIGHT_SHOOT;
+                case (BILL_STATE_SWIM_LOOK_UP):
+                    aniId = ID_ANI_BILL_SWIM_LOOK_UP_LEFT;
                     y2 -= offset;
                     break;
                 }
@@ -85,19 +85,19 @@ void CBill::Render()
                     aniId = ID_ANI_BILL_WALK_LOOK_DOWN_RIGHT;
                     break;
                 case (BILL_STATE_SWIM_IDLE):
-                    aniId = ID_ANI_BILL_SWIM_RIGHT;
+                    aniId = aniId = ID_ANI_BILL_SWIM_RIGHT_SHOOT;
                     y2 -= offset;
                     break;
                 case (BILL_STATE_SWIM_WALK):
-                    aniId = ID_ANI_BILL_SWIM_RIGHT;
+                    aniId = aniId = ID_ANI_BILL_SWIM_RIGHT_SHOOT;
                     y2 -= offset;
                     break;
                 case (BILL_STATE_SWIM_SIT):
                     aniId = ID_ANI_BILL_SWIM_UNDER;
                     y2 -= offset;
                     break;
-                case (BILL_STATE_SWIM_SHOOT):
-                    aniId = ID_ANI_BILL_SWIM_RIGHT_SHOOT;
+                case (BILL_STATE_SWIM_LOOK_UP):
+                    aniId = ID_ANI_BILL_SWIM_LOOK_UP_RIGHT;
                     y2 -= offset;
                     break;
                 }
@@ -143,8 +143,8 @@ void CBill::Render()
                     aniId = ID_ANI_BILL_SWIM_UNDER;
                     y2 -= offset;
                     break;
-                case (BILL_STATE_SWIM_SHOOT):
-                    aniId = ID_ANI_BILL_SWIM_LEFT_SHOOT;
+                case (BILL_STATE_SWIM_LOOK_UP):
+                    aniId = ID_ANI_BILL_SWIM_LOOK_UP_LEFT;
                     y2 -= offset;
                     break;
                 }
@@ -188,8 +188,8 @@ void CBill::Render()
                     aniId = ID_ANI_BILL_SWIM_UNDER;
                     y2 -= offset;
                     break;
-                case (BILL_STATE_SWIM_SHOOT):
-                    aniId = ID_ANI_BILL_SWIM_RIGHT_SHOOT;
+                case (BILL_STATE_SWIM_LOOK_UP):
+                    aniId = ID_ANI_BILL_SWIM_LOOK_UP_RIGHT;
                     y2 -= offset;
                     break;
                 }
@@ -225,15 +225,25 @@ void CBill::Render()
                 aniId = ID_ANI_LANCE_WALK_LOOK_DOWN_LEFT;
                 break;
             case (BILL_STATE_SWIM_IDLE):
-                aniId = ID_ANI_LANCE_SWIM_LEFT;
+                if (RenderShoot > 0)
+                    aniId = ID_ANI_LANCE_SWIM_LEFT_SHOOT;
+                else
+                    aniId = ID_ANI_LANCE_SWIM_LEFT;
                 y2 -= offset;
                 break;
             case (BILL_STATE_SWIM_WALK):
-                aniId = ID_ANI_LANCE_SWIM_LEFT;
+                if (RenderShoot > 0)
+                    aniId = ID_ANI_LANCE_SWIM_LEFT_SHOOT;
+                else
+                    aniId = ID_ANI_LANCE_SWIM_LEFT;
                 y2 -= offset;
                 break;
             case (BILL_STATE_SWIM_SIT):
                 aniId = ID_ANI_LANCE_SWIM_UNDER;
+                y2 -= offset;
+                break;
+            case (BILL_STATE_SWIM_LOOK_UP):
+                aniId = ID_ANI_BILL_SWIM_LOOK_UP_LEFT;
                 y2 -= offset;
                 break;
 
@@ -267,21 +277,32 @@ void CBill::Render()
                 aniId = ID_ANI_LANCE_WALK_LOOK_DOWN_RIGHT;
                 break;
             case (BILL_STATE_SWIM_IDLE):
-                aniId = ID_ANI_LANCE_SWIM_RIGHT;
+                if (RenderShoot > 0)
+                    aniId = ID_ANI_LANCE_SWIM_RIGHT_SHOOT;
+                else
+                    aniId = ID_ANI_LANCE_SWIM_RIGHT;
                 y2 -= offset;
                 break;
             case (BILL_STATE_SWIM_WALK):
-                aniId = ID_ANI_LANCE_SWIM_RIGHT;
+                if (RenderShoot > 0)
+                    aniId = ID_ANI_LANCE_SWIM_RIGHT_SHOOT;
+                else
+                    aniId = ID_ANI_LANCE_SWIM_RIGHT;
                 y2 -= offset;
                 break;
             case (BILL_STATE_SWIM_SIT):
                 aniId = ID_ANI_LANCE_SWIM_UNDER;
                 y2 -= offset;
                 break;
+            case (BILL_STATE_SWIM_LOOK_UP):
+                aniId = ID_ANI_BILL_SWIM_LOOK_UP_RIGHT;
+                y2 -= offset;
+                break;
             }
     }
     animations->Get(aniId)->Render(x2, y2);
 }
+
 
 void CBill::Update(DWORD dt)
 { //cap nhat: kiem tra dieu kien truoc khi doi x y    
@@ -351,7 +372,7 @@ void CBill::Update(DWORD dt)
             nx = 1;
         }
     }
-    else if (GetState(BILL_STATE_IDLE) || GetState(BILL_STATE_SWIM_IDLE))
+    else if (GetState(BILL_STATE_IDLE) || GetState(BILL_STATE_SWIM_IDLE) || GetState(BILL_STATE_SWIM_SHOOT))
     {
         vx = 0;
         vy = 0;
@@ -470,8 +491,8 @@ void CBill::SetState(int keycode, int action)
             break;
 
         case DIK_RSHIFT: //shoot
-            if (isSwimming && !GetState(BILL_STATE_SWIM_SIT)) SetState(BILL_STATE_SWIM_SHOOT);
             ShootKey(action);
+
             break;
         }
     }
@@ -648,8 +669,10 @@ void CBill::UpKey(int action)
     switch (action)
     {
     case ON_KEY_DOWN:
-        if (isSwimming)
+        if (isSwimming) {
+            SetState(BILL_STATE_SWIM_LOOK_UP);
             break;
+        }
         if (!GetState(BILL_STATE_SIT) && !GetState(BILL_STATE_JUMP) && !GetState(BILL_STATE_FALL))
         {
             if (GetState(BILL_STATE_WALK) || GetState(BILL_STATE_WALK_LOOK_UP))
@@ -667,6 +690,7 @@ void CBill::UpKey(int action)
         {
             SetState(BILL_STATE_WALK);
         }
+        else if (GetState(BILL_STATE_SWIM_LOOK_UP)) SetState(BILL_STATE_SWIM_IDLE);
         break;
     case KEY_STATE:
         if (isSwimming)
@@ -721,7 +745,7 @@ void CBill::ShootKey(int action)
             GetBoundingBox(l, t, r, b);
             if ((GetState(BILL_STATE_IDLE) || GetState(BILL_STATE_WALK)
                 || GetState(BILL_STATE_JUMP) || GetState(BILL_STATE_FALL)
-                || GetState(BILL_STATE_SIT)))
+                || GetState(BILL_STATE_SIT) || GetState(BILL_STATE_SWIM_WALK))||GetState(BILL_STATE_SWIM_IDLE))
             {
                 if (right && !left)
                     bullet = new CBullet(r, (b + t) / 2 + gun_height, 0, true);
@@ -730,7 +754,7 @@ void CBill::ShootKey(int action)
                 else
                     break;
             }
-            else if (GetState(BILL_STATE_LOOK_UP))
+            else if (GetState(BILL_STATE_LOOK_UP) || GetState(BILL_STATE_SWIM_LOOK_UP))
                 if (right && !left)
                 {
                     bullet = new CBullet((l + r) / 2 + 4, t, 90, true);
@@ -771,6 +795,7 @@ void CBill::ShootKey(int action)
             }
             break;
         case ON_KEY_UP:
+            if (GetState(BILL_STATE_SWIM_SHOOT)) SetState(BILL_STATE_SWIM_IDLE);
             break;
 
         case KEY_STATE:
