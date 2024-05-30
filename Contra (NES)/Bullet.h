@@ -14,10 +14,10 @@ protected:
 	float vx = 0;
 	float vy = 0;
 	int degree;
-	bool isBillBullet;
 	float originalx;
 	float originaly;
 public:
+	bool isBillBullet;
 	int type = 0;
 	CBullet(float x, float y, int degree, bool isBillBullet);
 	void Render();

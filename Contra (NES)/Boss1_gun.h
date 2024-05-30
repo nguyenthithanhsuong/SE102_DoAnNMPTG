@@ -9,26 +9,26 @@
 #include "BinaryTree.h"
 #include "Land.h"
 #include "Bill.h"
-#include "Bullet.h"
-
 
 extern QNode* Tree;
 class Loader;
 extern CBullet* bullet;
 
-class CGreeder : public CGameObject
+
+class CBoss1Gun : public CGameObject
 {
 	bool Collision = true;
-	bool state = true;
 	bool notded = true;
-	int hp = 20;
+	bool isGun1 = true;
+	int turn = 0;
+	int hp = 50;
 	bool isOnPlatform = false;
 public:
-	CGreeder(float x, float y, float vx, int hp) : CGameObject(x, y)
+	CBoss1Gun(float x, float y, bool isGun1) : CGameObject(x, y)
 	{
 		IsDynamic = true;
-		this->hp = hp;
-		this->vx = vx; this->vy = 0;
+		this->isGun1 = isGun1;
+		this->vx = 0; this->vy = 0;
 	}
 	void Update(DWORD dt); //update frames
 	void Render(); //draw to screen
@@ -39,3 +39,4 @@ public:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 	void OnCollisionWithBullet(LPCOLLISIONEVENT e);
 };
+

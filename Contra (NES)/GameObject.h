@@ -64,7 +64,7 @@ public:
 		vx = this->vx; vy = this->vy;
 	}
 	//Collision
-	virtual int IsCollidable() { return 0; };
+	virtual int IsCollidable() { return 1; };
 	virtual void OnNoCollision(DWORD dt) {};
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e) {};
 	virtual int IsBlocking() { return 1; }

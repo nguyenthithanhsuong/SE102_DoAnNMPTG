@@ -830,6 +830,125 @@ void Loader::LoadTurret()
 	animations->Add(ID_ANI_TURRET_LOOK_8H, ani);
 }
 
+void Loader::LoadCanon()
+{
+	CTextures* textures = CTextures::GetInstance();
+
+	textures->Add(ID_TEX_CANON, TEXTURE_PATH_CANON);
+
+	CSprites* sprites = CSprites::GetInstance();
+	CAnimations* animations = CAnimations::GetInstance();
+
+	LPTEXTURE texCanon = textures->Get(ID_TEX_CANON);
+	LPANIMATION ani;
+
+	//look left 
+	sprites->Add(24011, 0, 49, 31, 79, texCanon);
+	sprites->Add(24012, 38, 49, 69, 79, texCanon);
+	sprites->Add(24013, 76, 49, 107, 79, texCanon);
+	ani = new CAnimation(100);
+	ani->Add(24011);
+	ani->Add(24012);
+	ani->Add(24013);
+	animations->Add(ID_ANI_CANON_LOOK_LEFT, ani);
+
+	//look up
+	sprites->Add(24111, 0, 121, 31, 152, texCanon);
+	sprites->Add(24112, 38, 121, 69, 152, texCanon);
+	sprites->Add(24113, 76, 121, 107, 152, texCanon);
+	ani = new CAnimation(100);
+	ani->Add(24111);
+	ani->Add(24112);
+	ani->Add(24113);
+	animations->Add(ID_ANI_CANON_LOOK_UP, ani);
+
+	//look up left
+	sprites->Add(24211, 0, 85, 31, 115, texCanon);
+	sprites->Add(24212, 38, 85, 69, 115, texCanon);
+	sprites->Add(24213, 76, 85, 107, 115, texCanon);
+	ani = new CAnimation(100);
+	ani->Add(24211);
+	ani->Add(24212);
+	ani->Add(24213);
+	animations->Add(ID_ANI_CANON_LOOK_UPLEFT, ani);
+
+	//appear
+	sprites->Add(24051, 0, 0, 31, 15, texCanon);
+	sprites->Add(24052, 38, 0, 69, 15, texCanon);
+	sprites->Add(24053, 76, 0, 107, 15, texCanon);
+	sprites->Add(24054, 0, 21, 31, 44, texCanon);
+	sprites->Add(24055, 38, 21, 69, 44, texCanon);
+	sprites->Add(24056, 76, 21, 107, 44, texCanon);
+	sprites->Add(24057, 76, 49, 107, 79, texCanon);
+	ani = new CAnimation(500);
+	ani->Add(24051);
+	ani->Add(24052);
+	ani->Add(24053);
+	ani->Add(24054);
+	ani->Add(24055);
+	ani->Add(24056);
+	ani->Add(24057);
+	animations->Add(ID_ANI_CANON_APPEAR, ani);
+
+	//gone
+	ani = new CAnimation(500);
+	ani->Add(24057);
+	ani->Add(24056);
+	ani->Add(24055);
+	ani->Add(24054);
+	ani->Add(24053);
+	ani->Add(24052);
+	ani->Add(24051);
+	animations->Add(ID_ANI_CANON_GONE, ani);
+}
+
+void Loader::LoadBoss1()
+{
+	CTextures* textures = CTextures::GetInstance();
+
+	textures->Add(ID_TEX_BOSS1, TEXTURE_PATH_BOSS1);
+
+	CSprites* sprites = CSprites::GetInstance();
+	CAnimations* animations = CAnimations::GetInstance();
+
+	LPTEXTURE texBoss1 = textures->Get(ID_TEX_BOSS1);
+	LPANIMATION ani;
+
+	//boss no die
+	sprites->Add(50001, 0, 0, 112, 192, texBoss1);
+	ani = new CAnimation(100);
+	ani->Add(50001);
+	animations->Add(ID_BOSS1, ani);
+
+	//Badge shiny
+	sprites->Add(50011, 0, 199, 24, 230, texBoss1);
+	sprites->Add(50012, 28, 199, 52, 230, texBoss1);
+	sprites->Add(50013, 56, 199, 80, 230, texBoss1);
+	ani = new CAnimation(500);
+	ani->Add(50011);
+	ani->Add(50012);
+	ani->Add(50013);
+	animations->Add(ID_BOSS1_BADGE, ani);
+
+	//Gun1 shoot
+	sprites->Add(50021, 86, 202, 98, 208, texBoss1);
+	sprites->Add(50022, 102, 202, 112, 208, texBoss1);
+	ani = new CAnimation(500);
+	ani->Add(50021);
+	ani->Add(50022);
+	ani->Add(50021);
+	animations->Add(ID_BOSS1_GUN1, ani);
+
+	//Gun2 shoot
+	sprites->Add(50031, 86, 210, 100, 216, texBoss1);
+	sprites->Add(50032, 102, 210, 114, 216, texBoss1);
+	ani = new CAnimation(500);
+	ani->Add(50031);
+	ani->Add(50032);
+	ani->Add(50031);
+	animations->Add(ID_BOSS1_GUN2, ani);
+}
+
 void Loader::LoadMap()
 {
 	CTextures* textures = CTextures::GetInstance();
@@ -929,7 +1048,7 @@ void Loader::LoadStage1()
 		switch (stage1->Mobs[i].type)
 		{
 		case 1:
-			greeder = new CGreeder(stage1->Mobs[i].x, stage1->Mobs[i].y, GREEDER_RUNNING_SPEED);
+			greeder = new CGreeder(stage1->Mobs[i].x, stage1->Mobs[i].y, -GREEDER_RUNNING_SPEED, 20);
 			Tree->Insert(greeder);
 			break; // Add break statement to exit the switch block
 		case 2:
@@ -939,6 +1058,18 @@ void Loader::LoadStage1()
 		case 3:
 			turret = new CTurret(stage1->Mobs[i].x, stage1->Mobs[i].y);
 			Tree->Insert(turret);
+			break;
+		case 4:
+			canon = new CCanon(stage1->Mobs[i].x, stage1->Mobs[i].y);
+			Tree->Insert(canon);
+			break;
+		case 5:
+			boss1 = new CBoss1(stage1->Mobs[i].x, stage1->Mobs[i].y);
+			Tree->Insert(boss1);
+			bossgun1 = new CBoss1Gun(stage1->Mobs[i].x - 50, stage1->Mobs[i].y + 10, true);
+			Tree->Insert(bossgun1);
+			bossgun2 = new CBoss1Gun(stage1->Mobs[i].x - 10, stage1->Mobs[i].y + 10, false);
+			Tree->Insert(bossgun2);
 			break;
 		default:
 			break;

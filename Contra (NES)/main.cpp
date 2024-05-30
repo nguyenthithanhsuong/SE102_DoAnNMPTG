@@ -31,8 +31,13 @@ CLand* land = NULL;
 CGame* game;
 CGreeder* greeder = NULL;
 CShooter* shooter = NULL;
+CCanon* canon = NULL;
 CTurret* turret = NULL;
+CBoss1* boss1 = NULL;
+CBoss1Gun* bossgun1 = NULL;
+CBoss1Gun* bossgun2 = NULL;
 CTitle* title = NULL;
+CBullet* bullet = NULL;
 
 CCamera* Camera = new CCamera();
 CSampleKeyHandler* keyHandler;
@@ -56,9 +61,11 @@ void LoadResources()
 {
 	Loader load;
 	load.LoadMap();
-	load.LoadGreeder();	
+	load.LoadGreeder();
 	load.LoadShooter();
 	load.LoadTurret();
+	load.LoadCanon();
+	load.LoadBoss1();
 	load.LoadTitle();
 	load.LoadBill();
 	load.LoadLance();

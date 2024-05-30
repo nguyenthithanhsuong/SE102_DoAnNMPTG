@@ -131,8 +131,11 @@
     <ClCompile Include="Animations.cpp" />
     <ClCompile Include="Bill.cpp" />
     <ClCompile Include="BinaryTree.cpp" />
+    <ClCompile Include="Boss1.cpp" />
+    <ClCompile Include="Boss1_gun.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Canon.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Deleted.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -157,8 +160,11 @@
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="Animations.h" />
     <ClInclude Include="BinaryTree.h" />
+    <ClInclude Include="Boss1.h" />
+    <ClInclude Include="Boss1_gun.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Canon.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Deleted.h" />
     <ClInclude Include="Greeder.h" />

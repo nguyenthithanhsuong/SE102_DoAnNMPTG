@@ -73,6 +73,15 @@
     <ClCompile Include="Turret.cpp">
       <Filter>Game\Characters\NPC\Turret</Filter>
     </ClCompile>
+    <ClCompile Include="Boss1.cpp">
+      <Filter>Game\Characters\NPC\Boss1</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss1_gun.cpp">
+      <Filter>Game\Characters\NPC\Boss1</Filter>
+    </ClCompile>
+    <ClCompile Include="Canon.cpp">
+      <Filter>Game\Characters\NPC\Canon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Land.h">
@@ -156,6 +165,15 @@
     <ClInclude Include="Turret.h">
       <Filter>Game\Characters\NPC\Turret</Filter>
     </ClInclude>
+    <ClInclude Include="Boss1.h">
+      <Filter>Game\Characters\NPC\Boss1</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1_gun.h">
+      <Filter>Game\Characters\NPC\Boss1</Filter>
+    </ClInclude>
+    <ClInclude Include="Canon.h">
+      <Filter>Game\Characters\NPC\Canon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">
@@ -232,6 +250,12 @@
     </Filter>
     <Filter Include="Game\Characters\NPC\Turret">
       <UniqueIdentifier>{14ce32ed-6ef4-4281-b551-744b8c7dd0d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\NPC\Boss1">
+      <UniqueIdentifier>{072f26f1-2bf6-4b3e-ab24-b9c4d065a414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Characters\NPC\Canon">
+      <UniqueIdentifier>{386fbe62-8985-4043-b419-c465b9652030}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

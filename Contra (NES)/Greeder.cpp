@@ -3,18 +3,21 @@
 void CGreeder::Render()
 {
 	LPANIMATION ani;
-	if (state == true)
-		ani = CAnimations::GetInstance()->Get(ID_ANI_GREEDER_RUN_RIGHT);
-	else
-		ani = CAnimations::GetInstance()->Get(ID_ANI_GREEDER_RUN_LEFT);
-	ani->Render(x, y);
+	if (notded == true)
+	{
+		if (state == true)
+			ani = CAnimations::GetInstance()->Get(ID_ANI_GREEDER_RUN_RIGHT);
+		else
+			ani = CAnimations::GetInstance()->Get(ID_ANI_GREEDER_RUN_LEFT);
+		ani->Render(x, y);
+	}
 }
 
 
 void CGreeder::Update(DWORD dt)
 { //cap nhat: kiem tra dieu kien truoc khi doi x y
-
 	vy -= GAME_GRAVITY * dt;
+	DebugOut(L"hp=%i\n", hp);
 
 	int BackBufferWidth = CGame::GetInstance()->GetBackBufferWidth();
 
@@ -67,4 +70,13 @@ void CGreeder::OnCollisionWith(LPCOLLISIONEVENT e)
 		{
 			vx = -vx;
 		}
+	if (dynamic_cast<CBullet*>(e->obj))
+		OnCollisionWithBullet(e);
+}
+
+void CGreeder::OnCollisionWithBullet(LPCOLLISIONEVENT e)
+{
+	if (bullet->isBillBullet == true)
+		hp -= 5;
+	if (hp <= 0) notded = false;
 }

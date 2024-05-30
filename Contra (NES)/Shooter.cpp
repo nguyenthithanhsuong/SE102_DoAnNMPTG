@@ -97,6 +97,13 @@ void CShooter::OnCollisionWith(LPCOLLISIONEVENT e)
 		{
 			vx = -vx;
 		}
+	if (dynamic_cast<CBullet*>(e->obj))
+		OnCollisionWithBullet(e);
+}
 
-
+void CShooter::OnCollisionWithBullet(LPCOLLISIONEVENT e)
+{
+	if (bullet->isBillBullet == true)
+		hp -= 5;
+	if (hp <= 0) state = 6;
 }

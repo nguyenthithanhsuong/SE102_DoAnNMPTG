@@ -15,10 +15,12 @@
 extern QNode* Tree;
 class Loader;
 extern CBill* bill;
+extern CBullet* bullet;
 
 class CShooter : public CGameObject
 {
 	bool Collision = true;
+	int hp = 20;
 	int state = 2;
 	/*
 		1: up left
@@ -42,4 +44,5 @@ public:
 	virtual int IsBlocking() { return 0; }
 	virtual void OnNoCollision(DWORD dt);
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
+	void OnCollisionWithBullet(LPCOLLISIONEVENT e);
 };

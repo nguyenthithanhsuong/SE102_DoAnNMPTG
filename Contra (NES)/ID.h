@@ -19,9 +19,11 @@ extern Stage* stage1;
 #define ID_TEX_MISC 10
 #define ID_TEX_GREEDER 20
 #define ID_TEX_SHOOTER 21
+#define ID_TEX_CANON 24
 #define ID_TEX_TURRET 25
 #define ID_TEX_MAP_STAGE_1 30
 #define ID_TEX_TITLE 40
+#define ID_TEX_BOSS1 50
 #define ID_TEX_BULLET 100
 
 #define TEXTURES_DIR L"textures"
@@ -29,9 +31,13 @@ extern Stage* stage1;
 #define TEXTURE_PATH_LANCE TEXTURES_DIR "\\LanceSprites.png"
 #define TEXTURE_PATH_ENEMIES TEXTURES_DIR "\\Enemies.png"
 #define TEXTURE_PATH_TURRET TEXTURES_DIR "\\turret.png"
+#define TEXTURE_PATH_CANON TEXTURES_DIR "\\Canon.png"
+#define TEXTURE_PATH_BOSS1 TEXTURES_DIR "\\boss1.png"
 #define TEXTURE_PATH_MISC TEXTURES_DIR "\\Misc.png"
+#define TEXTURE_PATH_ITEMBOX TEXTURES_DIR "\\itembox.png"
 #define TEXTURE_PATH_STAGE_1_MAP TEXTURES_DIR "\\Stage1Map.png"
 #define TEXTURE_PATH_BBOX TEXTURES_DIR "\\bbox.png"
+//#define TEXTURE_PATH_KABOOM TEXTURE_DIR "\\boom.png"
 #define TEXTURE_PATH_TITLE TEXTURES_DIR "\\Menu.png"
 
 //keyboard stuff
@@ -183,6 +189,21 @@ extern Stage* stage1;
 #define ID_ANI_SHOOTER_LOOK_RIGHT 21120
 #define ID_ANI_SHOOTER_LOOK_RIGHT_DOWN 21220
 
+
+// CANON STUFF
+
+#define CANON_WIDTH 31.0f
+#define CANON_HEIGHT 31.0f
+
+#define CANON_START_X 1518.2f
+#define CANON_START_Y 120.0f
+
+#define ID_ANI_CANON_LOOK_LEFT 24010
+#define ID_ANI_CANON_LOOK_UP 24110
+#define ID_ANI_CANON_LOOK_UPLEFT 24210
+#define ID_ANI_CANON_APPEAR 24050
+#define ID_ANI_CANON_GONE 24060
+
 // TURRET STUFF
 
 #define TURRET_WIDTH 31.0f
@@ -205,6 +226,40 @@ extern Stage* stage1;
 #define ID_ANI_TURRET_LOOK_12H 25240
 #define ID_ANI_TURRET_IDLE 25050
 #define ID_ANI_TURRET_OPEN 25060
+
+// BOSS1 STUFF
+
+#define BOSS1_WIDTH 112.0f
+#define BOSS1_HEIGHT 192.0f
+
+#define BOSS1_START_X 3256.0f
+#define BOSS1_START_Y 100.0f
+
+#define ID_BOSS1 50000
+
+#define BOSS1_BADGE_WIDTH 24.0f
+#define BOSS1_BADGE_HEIGHT 31.0f
+
+#define BOSS1_BADGE_START_X 3220.0f
+#define BOSS1_BADGE_START_Y BOSS1_START_Y - 40.0f
+
+#define ID_BOSS1_BADGE 50010
+
+#define BOSS1_GUN1_WIDTH 12.0f
+#define BOSS1_GUN1_HEIGHT 6.0f
+
+#define BOSS1_GUN1_START_X 3220.0f
+#define BOSS1_GUN1_START_Y BOSS1_START_Y
+
+#define ID_BOSS1_GUN1 50020
+
+#define BOSS1_GUN2_WIDTH 14.0f
+#define BOSS1_GUN2_HEIGHT 6.0f
+
+#define BOSS1_GUN2_START_X 3230.0f
+#define BOSS1_GUN2_START_Y BOSS1_START_Y + 5.0f
+
+#define ID_BOSS1_GUN2 50030
 
  //TITLE STUFF
 

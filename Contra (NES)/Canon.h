@@ -9,26 +9,33 @@
 #include "BinaryTree.h"
 #include "Land.h"
 #include "Bill.h"
-#include "Bullet.h"
+
 
 
 extern QNode* Tree;
 class Loader;
+extern CBill* bill;
 extern CBullet* bullet;
 
-class CGreeder : public CGameObject
+class CCanon : public CGameObject
 {
 	bool Collision = true;
-	bool state = true;
-	bool notded = true;
-	int hp = 20;
+	bool IsOnScreen = false;
+	int hp = 30;
+	int state = 1;
+	/*
+		0: appear
+		1: left
+		2: upleft
+		3: up
+		4: gone
+	*/
 	bool isOnPlatform = false;
 public:
-	CGreeder(float x, float y, float vx, int hp) : CGameObject(x, y)
+	CCanon(float x, float y) : CGameObject(x, y)
 	{
 		IsDynamic = true;
-		this->hp = hp;
-		this->vx = vx; this->vy = 0;
+		this->vx = 0; this->vy = 0;
 	}
 	void Update(DWORD dt); //update frames
 	void Render(); //draw to screen
